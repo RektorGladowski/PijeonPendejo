@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ShitSplat : MonoBehaviour
+public class ShitHit : MonoBehaviour
 {
     public Sprite splattedShit;
 
@@ -17,10 +15,20 @@ public class ShitSplat : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (!other.gameObject.CompareTag("MainPigeon"))
+        if (!other.gameObject.CompareTag("Enemy"))
         {
             renderer.sprite = splattedShit;
             rb.isKinematic = true;
         }
+        else
+        {
+            KillEnemy(other.gameObject);
+        }
+    }
+
+    private void KillEnemy(GameObject enemy)
+    {
+        Destroy(enemy);
+        Destroy(this.gameObject);
     }
 }
