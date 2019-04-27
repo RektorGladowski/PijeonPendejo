@@ -76,7 +76,7 @@ MonoBehaviour:
   Distance: 10
   MainPigeon: {fileID: 11400000, guid: 91d1191197c04c44d89e12d5594464ba, type: 2}
   Hawk: {fileID: 2662737880486930927, guid: 790a990e7cbeab44184d7d6d544b1ace, type: 3}
-  Eagle: {fileID: 0}
+  Eagle: {fileID: 1923398829305287753, guid: 815374317d29ea64c9f56feafa1b6fb4, type: 3}
   Drone: {fileID: 0}
   Blimp: {fileID: 0}
   Kraken: {fileID: 196525257375315100, guid: 48b95daf0771c0948b43b2b602a5c81a, type: 3}

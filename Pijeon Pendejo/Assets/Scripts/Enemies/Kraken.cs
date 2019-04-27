@@ -8,7 +8,7 @@ public class Kraken : Enemy
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Pigeon"))
+        if (collision.gameObject.CompareTag("Pigeon") || collision.gameObject.CompareTag("MainPigeon"))
         {
             Attack(AttackSpeed);
         }
