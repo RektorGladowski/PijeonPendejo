@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(AudioSource))]
@@ -17,10 +16,12 @@ public class Narwal : Enemy
 
     private IEnumerator Attack(GameObject objectToAttack, float time)
     {
-        rb.velocity = new Vector2(0, 0);
         yield return new WaitForSeconds(time);
-        rb.AddForce((objectToAttack.transform.position - transform.position) * AttackForce, ForceMode2D.Impulse);
-        rb.gravityScale = 1;
+        if (objectToAttack)
+        {
+            rb.AddForce((objectToAttack.transform.position - transform.position) * AttackForce, ForceMode2D.Impulse);
+            rb.gravityScale = 1;
+        }
 
         Debug.Log("Narwal attacking");
     }

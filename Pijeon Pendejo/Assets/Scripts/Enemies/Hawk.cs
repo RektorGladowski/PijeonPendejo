@@ -52,7 +52,10 @@ public class Hawk : Enemy
     {
         rb.velocity = new Vector2(0, 0);
         yield return new WaitForSeconds(time);
-        rb.AddForce((objectToAttack.transform.position - transform.position) * AttackForce);
+        if (objectToAttack)
+        {
+            rb.AddForce((objectToAttack.transform.position - transform.position) * AttackForce);
+        }
 
         Debug.Log("Hawk attacking");
     }
