@@ -5,12 +5,14 @@ using UnityEngine;
 public class PigeonShooting : MonoBehaviour
 {
     public List<GameObject> ShootableObjects;
+    public Animator PigeonAnimator;
     public float ShitInitialCooldown;
     public float ShitCooldown;
     
     private bool shitReady;
     private Rigidbody2D pigeonRb;
-    
+    private static readonly int ShitCooledDown = Animator.StringToHash("ShitCooledDown");
+
     private void Start()
     {
         pigeonRb = gameObject.GetComponentInParent<Rigidbody2D>();
@@ -52,5 +54,6 @@ public class PigeonShooting : MonoBehaviour
     {
         yield return new WaitForSeconds(cooldown);
         shitReady = true;
+        PigeonAnimator.SetTrigger(ShitCooledDown);
     }
 }
