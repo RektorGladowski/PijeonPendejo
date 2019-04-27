@@ -16,7 +16,7 @@ public class Kraken : Enemy
 
     private void Attack(float time)
     {
-        transform.DOMove(new Vector2(transform.position.x, 0), time);
+        transform.DOMove(new Vector3(transform.position.x, 0, -3), time);
 
         Debug.Log("Kraken attacking");
     }
