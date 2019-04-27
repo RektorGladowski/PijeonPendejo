@@ -4,18 +4,18 @@ public class MasterPigeonMovement : MonoBehaviour
 {
 	[Header("Starting Values")]
 	public float startingVelocity = 12f;
-	public float baseGravityForce = 70f;
-	public float baseGravityTorque = 1f;
+	public float baseGravityForce = 30f;
+	public float baseGravityTorque = 20f;
 
 	[Header("Movement Parameters")]
-	public float minimumGTForSwing = 30f;
-	public float gravityForceGrowthPerSecond = 30f;
-	public float gravityTorqueGrowthPerSecond = 3f;
-	public float thrustForce = 160f;
-	public float thrustTorque = 20f;
+	public float minimumGTForSwing = 50f;
+	public float gravityForceGrowthPerSecond = 10f;
+	public float gravityTorqueGrowthPerSecond = 310f;
+	public float thrustForce = 120f;
+	public float thrustTorque = 15f;
 
 	[Header("Limits")]
-	public float maxAngularVelocity = 45f;
+	public float maxAngularVelocity = 50f;
 	public float maxVelocity = 14f;
 
 	private Rigidbody2D pigeonRb;
