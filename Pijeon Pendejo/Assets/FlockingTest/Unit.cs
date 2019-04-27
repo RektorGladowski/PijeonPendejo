@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-	public AllUnits manager;
+	public PigeonManager manager;
 	public Vector2 location = Vector2.zero;
 	public Vector2 velocity;
 
@@ -136,7 +136,7 @@ public class Unit : MonoBehaviour
 			currentForce = currentForce.normalized;
 		}
 
-		if (manager.GetComponent<AllUnits>().willful && Random.Range(0,50) <= 1)
+		if (manager.GetComponent<PigeonManager>().willful && Random.Range(0,50) <= 1)
 		{
 			if (Random.Range(0, 50) < 1)
 			{

@@ -11,8 +11,13 @@ public class PigeonUnit : MonoBehaviour
 		return MasterPigeon.transform.position;
 	}
 
-	private void SetAsMasterPigeon(PigeonUnit unit)
+	public static void SetAsMasterPigeon(PigeonUnit unit)
 	{
 		MasterPigeon = unit.gameObject;
+	}
+
+	public static void SetAsMasterPigeon(GameObject go)
+	{
+		MasterPigeon = go;
 	}
 }

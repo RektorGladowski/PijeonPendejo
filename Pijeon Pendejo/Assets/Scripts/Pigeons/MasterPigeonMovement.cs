@@ -20,7 +20,8 @@ public class MasterPigeonMovement : MonoBehaviour
 	private Rigidbody2D pigeonRb;
 	private float currentGravityForce;
 	private float currentGravityTorque;
-	
+
+    private Animator m_Animator;
 
 
     private void Start()
@@ -31,10 +32,13 @@ public class MasterPigeonMovement : MonoBehaviour
 	private void InitializeMasterPigeon()
 	{
 		pigeonRb = GetComponent<Rigidbody2D>();
+        m_Animator = gameObject.GetComponentInChildren<Animator>();
+		
 
-		if (pigeonRb.velocity == Vector2.zero)
+        if (pigeonRb.velocity == Vector2.zero)
 		{
 			pigeonRb.velocity = new Vector3(startingVelocity, 0f, 0f);
+			PigeonUnit.SetAsMasterPigeon(gameObject);
 		}
 	}
 
@@ -50,12 +54,14 @@ public class MasterPigeonMovement : MonoBehaviour
 		{
 			UpdateGravityForce(GravityForceUpdateMode.GrowForce);
 			ApplyPigeonThrust();
+            m_Animator.speed = 2;
 		}
 		else
 		{
 			UpdateGravityForce(GravityForceUpdateMode.Reset);
 			ApplyGravityForce();
-		}
+            m_Animator.speed = 1;
+        }
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -81,6 +87,7 @@ public class MasterPigeonMovement : MonoBehaviour
 
 	private void ApplyGravityForce()
 	{
+		Debug.Log(transform.forward);
 		pigeonRb.AddForce(Vector3.down * currentGravityForce);
 
 		Quaternion targetQ = Quaternion.AngleAxis(Mathf.Atan2(-1, 0) * Mathf.Rad2Deg, Vector3.forward);
