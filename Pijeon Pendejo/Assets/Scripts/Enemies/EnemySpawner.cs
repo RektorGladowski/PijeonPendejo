@@ -6,7 +6,7 @@ using Variables._Definitions;
 public class EnemySpawner : MonoBehaviour
 {
     [Tooltip("The distance between enemies spawn points")]
-    public int Distance = 20;
+    public int Distance = 1000;
     public GOVariable MainPigeon;
 
     [Header("Sky prefabs")]
@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (PigeonUnit.GetMasterPigeonPosition().x - lastSpawn >= Distance / 2)
+        if (PigeonUnit.GetMasterPigeonPosition().x - lastSpawn >= 0)
         {
             SpawnEnemy();
         }
@@ -92,5 +92,6 @@ public class EnemySpawner : MonoBehaviour
         }
 
         lastSpawn += Distance;
+        Debug.Log("last spawn: " + lastSpawn);
     }
 }
