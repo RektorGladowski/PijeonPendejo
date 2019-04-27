@@ -4,17 +4,18 @@ public class MasterPigeonMovement : MonoBehaviour
 {
 	[Header("Starting Values")]
 	public float startingVelocity = 12f;
-	public float baseGravityForce = 70f;
-	public float baseGravityTorque = 1f;
+	public float baseGravityForce = 30f;
+	public float baseGravityTorque = 20f;
 
 	[Header("Movement Parameters")]
-	public float gravityForceGrowthPerSecond = 30f;
-	public float gravityTorqueGrowthPerSecond = 3f;
-	public float thrustForce = 160f;
-	public float thrustTorque = 20f;
+	public float minimumGTForSwing = 50f;
+	public float gravityForceGrowthPerSecond = 10f;
+	public float gravityTorqueGrowthPerSecond = 310f;
+	public float thrustForce = 120f;
+	public float thrustTorque = 15f;
 
 	[Header("Limits")]
-	public float maxAngularVelocity = 45f;
+	public float maxAngularVelocity = 50f;
 	public float maxVelocity = 14f;
 
 	private Rigidbody2D pigeonRb;
@@ -22,6 +23,7 @@ public class MasterPigeonMovement : MonoBehaviour
 	private float currentGravityTorque;
 
     private Animator m_Animator;
+	private GravityTorqueMode previousTorqueMode;
 
 
     private void Start()
@@ -42,7 +44,7 @@ public class MasterPigeonMovement : MonoBehaviour
 		}
 	}
 
-    private void FixedUpdate()
+    private void Update()
 	{
 		ProcessMovementInput();
 		ClampMasterPigeonVelocity();
@@ -52,13 +54,13 @@ public class MasterPigeonMovement : MonoBehaviour
 	{
 		if (Input.GetButton("Pigeon Thrust"))
 		{
-			UpdateGravityForce(GravityForceUpdateMode.GrowForce);
+			UpdateGravityForce(GravityForceUpdateMode.Reset);
 			ApplyPigeonThrust();
             m_Animator.speed = 2;
 		}
 		else
 		{
-			UpdateGravityForce(GravityForceUpdateMode.Reset);
+			UpdateGravityForce(GravityForceUpdateMode.GrowForce);
 			ApplyGravityForce();
             m_Animator.speed = 1;
         }
@@ -87,32 +89,89 @@ public class MasterPigeonMovement : MonoBehaviour
 
 	private void ApplyGravityForce()
 	{
-		Debug.Log(transform.forward);
 		pigeonRb.AddForce(Vector3.down * currentGravityForce);
-
-		Quaternion targetQ = Quaternion.AngleAxis(Mathf.Atan2(-1, 0) * Mathf.Rad2Deg, Vector3.forward);
-		transform.rotation = Quaternion.Slerp(transform.rotation, targetQ, currentGravityTorque * Time.fixedDeltaTime);
+		ApplyGravityTorque();	
 	}
 
-	
-
-	private void UpdateGravityForce(GravityForceUpdateMode mode)
+	private void ApplyGravityTorque()
 	{
-		if (mode == GravityForceUpdateMode.Reset)
+		float zAxis = transform.rotation.eulerAngles.z;
+
+		if (zAxis > 90 && zAxis < 270)
 		{
-			currentGravityForce = baseGravityForce;
-			currentGravityTorque = baseGravityTorque;
+			if (previousTorqueMode == GravityTorqueMode.Forward)
+			{
+				previousTorqueMode = GravityTorqueMode.Backward;
+
+				if (zAxis > 180)
+				{
+					if (currentGravityTorque > minimumGTForSwing)
+					{
+						UpdateGravityForce(GravityForceUpdateMode.Swing);
+					}
+					else
+					{
+						currentGravityTorque = 0;
+					}
+				}
+			}
+
+			pigeonRb.AddTorque(currentGravityTorque);
 		}
 		else
 		{
-			currentGravityForce += gravityForceGrowthPerSecond * Time.fixedDeltaTime;
-			currentGravityTorque += gravityTorqueGrowthPerSecond * Time.fixedDeltaTime;
+			if (previousTorqueMode == GravityTorqueMode.Backward)
+			{
+				previousTorqueMode = GravityTorqueMode.Forward;
+
+				if (zAxis > 270)
+				{
+					if (currentGravityTorque > minimumGTForSwing)
+					{
+						UpdateGravityForce(GravityForceUpdateMode.Swing);
+					}
+					else
+					{
+						currentGravityTorque = 0;
+					}
+				}
+
+			}
+
+			pigeonRb.AddTorque(-currentGravityTorque);
 		}
+	}
+
+	private void UpdateGravityForce(GravityForceUpdateMode mode)
+	{
+		switch (mode)
+		{
+			case GravityForceUpdateMode.Reset:
+				currentGravityForce = baseGravityForce;
+				currentGravityTorque = baseGravityTorque;
+				break;
+
+			case GravityForceUpdateMode.GrowForce:
+				currentGravityForce += gravityForceGrowthPerSecond * Time.fixedDeltaTime;
+				currentGravityTorque += gravityTorqueGrowthPerSecond * Time.fixedDeltaTime;
+				break;
+
+			case GravityForceUpdateMode.Swing:
+				currentGravityTorque = -currentGravityTorque;
+				break;
+		}		
 	}
 
 	private enum GravityForceUpdateMode
 	{
 		GrowForce,
 		Reset,
+		Swing,	
+	}
+
+	private enum GravityTorqueMode
+	{
+		Forward,
+		Backward,
 	}
 }
