@@ -76,7 +76,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2164911495312018105}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9815038, y: -4.18, z: -1.0518996}
+  m_LocalPosition: {x: 0, y: -4, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 9208622769976893290}
@@ -160,6 +160,11 @@ PrefabInstance:
       propertyPath: m_ConnectedRigidBody
       value: 
       objectReference: {fileID: 2164911494595838527}
+    - target: {fileID: 1579044452189942386, guid: cd7d8225adb03cf4ca869d14c44a1b9d,
+        type: 3}
+      propertyPath: m_LinearOffset.x
+      value: 2.26
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd7d8225adb03cf4ca869d14c44a1b9d, type: 3}
 --- !u!4 &9208622769976893290 stripped

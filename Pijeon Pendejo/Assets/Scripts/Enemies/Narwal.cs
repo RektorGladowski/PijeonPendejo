@@ -10,7 +10,7 @@ public class Narwal : Enemy
     {
         if (collision.gameObject.CompareTag("Pigeon"))
         {
-            StartCoroutine(Attack(collision.gameObject, 1));
+            StartCoroutine(Attack(collision.gameObject, 0.1f));
         }
     }
 
