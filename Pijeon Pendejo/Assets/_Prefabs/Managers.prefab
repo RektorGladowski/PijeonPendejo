@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 807ee1fd1708f4047b6133af37e71414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Distance: 10
+  Distance: 40
   MainPigeon: {fileID: 11400000, guid: 91d1191197c04c44d89e12d5594464ba, type: 2}
   Hawk: {fileID: 2662737880486930927, guid: 790a990e7cbeab44184d7d6d544b1ace, type: 3}
   Eagle: {fileID: 1923398829305287753, guid: 815374317d29ea64c9f56feafa1b6fb4, type: 3}
