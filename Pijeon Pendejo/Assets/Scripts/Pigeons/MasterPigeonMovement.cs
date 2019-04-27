@@ -46,7 +46,6 @@ public class MasterPigeonMovement : MonoBehaviour
 
     private void Update()
 	{
-		Debug.Log(currentGravityTorque);
 		ProcessMovementInput();
 		ClampMasterPigeonVelocity();
     }
