@@ -7,15 +7,15 @@ public class PigeonShooting : MonoBehaviour
     public List<GameObject> ShootableObjects;
     public float ShitInitialCooldown;
     public float ShitCooldown;
-    public float ShitForce;
     
     private bool shitReady;
+    private Rigidbody2D pigeonRb;
+    
     private void Start()
     {
+        pigeonRb = gameObject.GetComponentInParent<Rigidbody2D>();
         StartCoroutine(CooldownShit(ShitInitialCooldown));
     }
-
-    private Vector3 lastPosition;
 
     void Update()
     {
@@ -23,8 +23,7 @@ public class PigeonShooting : MonoBehaviour
         {
             if (shitReady)
             {
-                Vector3 movementVector = transform.position - lastPosition;
-                DeployShit(movementVector);
+                DeployShit();
                 shitReady = false;
                 StartCoroutine(CooldownShit(ShitCooldown));
             }
@@ -34,14 +33,14 @@ public class PigeonShooting : MonoBehaviour
                 Debug.Log("shit not ready :(");
             }
         }
-
-        lastPosition = transform.position;
     }
 
-    private void DeployShit(Vector3 movementVector)
+    private void DeployShit()
     {
         GameObject deployedShit = Instantiate(GetRandomShit(), transform.position, transform.rotation);
-        deployedShit.GetComponent<Rigidbody2D>().AddForce(movementVector * Time.deltaTime * ShitForce);
+        Rigidbody2D shitRb = deployedShit.GetComponent<Rigidbody2D>();
+        shitRb.velocity = pigeonRb.velocity;
+        shitRb.angularVelocity = pigeonRb.angularVelocity;
     }
 
     private GameObject GetRandomShit()
