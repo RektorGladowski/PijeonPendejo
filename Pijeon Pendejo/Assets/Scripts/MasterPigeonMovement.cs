@@ -20,7 +20,8 @@ public class MasterPigeonMovement : MonoBehaviour
 	private Rigidbody2D pigeonRb;
 	private float currentGravityForce;
 	private float currentGravityTorque;
-	
+
+    private Animator m_Animator;
 
 
     private void Start()
@@ -31,8 +32,9 @@ public class MasterPigeonMovement : MonoBehaviour
 	private void InitializeMasterPigeon()
 	{
 		pigeonRb = GetComponent<Rigidbody2D>();
+        m_Animator = gameObject.GetComponentInChildren<Animator>();
 
-		if (pigeonRb.velocity == Vector2.zero)
+        if (pigeonRb.velocity == Vector2.zero)
 		{
 			pigeonRb.velocity = new Vector3(startingVelocity, 0f, 0f);
 		}
@@ -50,12 +52,14 @@ public class MasterPigeonMovement : MonoBehaviour
 		{
 			UpdateGravityForce(GravityForceUpdateMode.GrowForce);
 			ApplyPigeonThrust();
+            m_Animator.speed = 2;
 		}
 		else
 		{
 			UpdateGravityForce(GravityForceUpdateMode.Reset);
 			ApplyGravityForce();
-		}
+            m_Animator.speed = 1;
+        }
 	}
 
     private void OnCollisionEnter2D(Collision2D collision)
