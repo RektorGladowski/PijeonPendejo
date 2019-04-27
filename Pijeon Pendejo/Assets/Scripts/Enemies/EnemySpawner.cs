@@ -6,7 +6,7 @@ using Variables._Definitions;
 public class EnemySpawner : MonoBehaviour
 {
     [Tooltip("The distance between enemies spawn points")]
-    public int Distance = 10;
+    public int Distance = 2;
     public GOVariable MainPigeon;
 
     [Header("Sky prefabs")]
@@ -20,21 +20,28 @@ public class EnemySpawner : MonoBehaviour
     public GameObject Narwal;
     public GameObject Ship;
 
+    private float lastSpawn = 0;
+
     private void Start()
     {
-        SpawnEnemy(new Vector3(0, 0, -5));
+        SpawnEnemy();
     }
 
     private void Update()
     {
-        
+        if (lastSpawn - PigeonUnit.GetMasterPigeonPosition().x >= Distance / 2)
+        {
+            SpawnEnemy();
+        }
     }
 
-    public void SpawnEnemy(Vector3 position)
+    public void SpawnEnemy()
     {
         // Sky prefabs spawning
         int rand = Random.Range(1, 100);
         Debug.Log("Spawning enemies with rand " + rand);
+
+        GameObject spawnedObject;
 
         if (rand <= 65)
         {
@@ -42,19 +49,23 @@ public class EnemySpawner : MonoBehaviour
         }
         else if (rand <= 75 && Hawk)
         {
-            Instantiate(Hawk);
+            spawnedObject = Instantiate(Hawk);
+            spawnedObject.transform.Translate(new Vector3(Distance, 0, 0));
         }
         else if (rand <= 85 && Eagle)
         {
-            Instantiate(Eagle);
+            spawnedObject = Instantiate(Eagle);
+            spawnedObject.transform.Translate(new Vector3(Distance, 0, 0));
         }
         else if (rand <= 95 && Drone)
         {
-            Instantiate(Drone);
+            spawnedObject = Instantiate(Drone);
+            spawnedObject.transform.Translate(new Vector3(Distance, 0, 0));
         }
         else if (Blimp)
         {
-            Instantiate(Blimp);
+            spawnedObject = Instantiate(Blimp);
+            spawnedObject.transform.Translate(new Vector3(Distance, 0, 0));
         }
 
         // Ground prefabs spawning
@@ -66,18 +77,20 @@ public class EnemySpawner : MonoBehaviour
         }
         else if (rand <= 75 && Kraken)
         {
-            Instantiate(Kraken);
+            spawnedObject = Instantiate(Kraken);
+            spawnedObject.transform.Translate(new Vector3(Distance, 0, 0));
         }
         else if (rand <= 95 && Narwal)
         {
-            Instantiate(Narwal);
+            spawnedObject = Instantiate(Narwal);
+            spawnedObject.transform.Translate(new Vector3(Distance, 0, 0));
         }
         else if (Ship)
         {
-            Instantiate(Ship);
+            spawnedObject = Instantiate(Ship);
+            spawnedObject.transform.Translate(new Vector3(Distance, 0, 0));
         }
 
-        GameObject obj = Instantiate(Kraken);
-        //obj.transform.position = Hawk.transform.position;
+        lastSpawn += Distance;
     }
 }
