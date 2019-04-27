@@ -29,6 +29,7 @@ public class PigeonTest : MonoBehaviour
         if(collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Pigeon collided with enemy");
+            Destroy(gameObject);
         }
     }
 }
