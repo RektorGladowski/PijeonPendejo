@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2652627820023021762}
   m_Layer: 8
   m_Name: MasterPigeon
-  m_TagString: Untagged
+  m_TagString: Pigeon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,7 +30,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.884823, y: 0.2244792, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 6908887450819375140}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -71,12 +72,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d10d13b9a30d8b243ab0e08c58fd6502, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 515d2481e870c1640bb6e6e41182c301, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.48, y: 0.94}
+  m_Size: {x: 2.41, y: 1.85}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -94,9 +95,9 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 8
-  m_LinearDrag: 2.2
-  m_AngularDrag: 2
+  m_Mass: 2
+  m_LinearDrag: 0.2
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -132,11 +133,86 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingVelocity: 12
-  baseGravityForce: 70
-  baseGravityTorque: 1
-  gravityForceGrowthPerSecond: 30
-  gravityTorqueGrowthPerSecond: 3
-  thrustForce: 160
+  baseGravityForce: 50
+  baseGravityTorque: 3
+  gravityForceGrowthPerSecond: 10
+  gravityTorqueGrowthPerSecond: 10
+  thrustForce: 80
   thrustTorque: 20
-  maxAngularVelocity: 45
+  maxAngularVelocity: 30
   maxVelocity: 14
+--- !u!1001 &8478511070950856968
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2652627820023021760}
+    m_Modifications:
+    - target: {fileID: 3046953901115844910, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_Name
+      value: Pigeon
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.022838
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.771362
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -72.34872
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 62ba4c3499b775e49b0a3c29bd40ad09, type: 3}
+--- !u!4 &6908887450819375140 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+    type: 3}
+  m_PrefabInstance: {fileID: 8478511070950856968}
+  m_PrefabAsset: {fileID: 0}

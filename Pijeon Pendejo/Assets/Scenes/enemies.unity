@@ -404,15 +404,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MasterPigeon
       objectReference: {fileID: 0}
-    - target: {fileID: 2652627820023021765, guid: 766377ddea9d2944092027a8879fbf21,
-        type: 3}
-      propertyPath: m_TagString
-      value: Pigeon
-      objectReference: {fileID: 0}
     - target: {fileID: 2652627820023021760, guid: 766377ddea9d2944092027a8879fbf21,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -17.9
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 2652627820023021760, guid: 766377ddea9d2944092027a8879fbf21,
         type: 3}
@@ -463,27 +458,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2652627820023021761, guid: 766377ddea9d2944092027a8879fbf21,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 515d2481e870c1640bb6e6e41182c301,
-        type: 3}
-    - target: {fileID: 2652627820023021761, guid: 766377ddea9d2944092027a8879fbf21,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 2.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 2652627820023021761, guid: 766377ddea9d2944092027a8879fbf21,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.85
-      objectReference: {fileID: 0}
-    - target: {fileID: 2652627820023021761, guid: 766377ddea9d2944092027a8879fbf21,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 766377ddea9d2944092027a8879fbf21, type: 3}
