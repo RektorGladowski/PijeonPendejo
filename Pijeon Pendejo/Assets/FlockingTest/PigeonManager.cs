@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AllUnits : MonoBehaviour
+public class PigeonManager : MonoBehaviour
 {
 	public GameObject[] units;
 	public GameObject unitPrefab;
