@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Kraken : Enemy
 {
-    override public void Activate()
+    private void Attack(GameObject objectToAttack)
     {
         Debug.Log("Kraken attacking");
     }

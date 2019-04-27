@@ -16,12 +16,19 @@ public class PigeonTest : MonoBehaviour
      void Update()
      {
          Vector2 mi = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-         Debug.Log(Input.GetAxisRaw("Horizontal"));
          mv = mi.normalized * speed;
      }
  
      private void FixedUpdate()
      {
          rb.MovePosition(rb.position + mv * Time.fixedDeltaTime);
-     }﻿
+     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Pigeon collided with enemy");
+        }
+    }
 }

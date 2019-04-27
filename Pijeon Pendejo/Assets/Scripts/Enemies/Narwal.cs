@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class Narwal : Enemy
 {
-    override public void Activate()
+    private void Attack(GameObject objectToAttack)
     {
         Debug.Log("Narwal attacking");
     }
