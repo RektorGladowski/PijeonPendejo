@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2652627820023021763}
   - component: {fileID: 2652627820023021764}
   - component: {fileID: 2652627820023021762}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MasterPigeon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
