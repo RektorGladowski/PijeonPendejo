@@ -9,7 +9,7 @@ public class Narwal : Enemy
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("MainPigeon"))
+        if (collision.gameObject.CompareTag("Pigeon"))
         {
             StartCoroutine(Attack(collision.gameObject, 1));
         }
