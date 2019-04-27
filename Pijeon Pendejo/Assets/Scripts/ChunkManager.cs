@@ -2,29 +2,32 @@
 
 public class ChunkManager : MonoBehaviour
 {
-    public GameObject StartChunk;
     public GameObject FinishChunk;
     public GameObject LevelChunk;
-    public int ChunkCount;
+    public int MaxChunkCount;
 
     private float chunkSize;
     private GameObject latestChunk;
-    private int chunkCounter = 0;
+    private int chunkCounter;
     
     void Start()
     {
-        latestChunk = StartChunk;
+        chunkCounter = 0;
         chunkSize = LevelChunk.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
-        GenerateChunk(latestChunk);
     }
 
     public void GenerateChunk(GameObject currentChunk)
     {
-            Debug.Log(chunkCounter);
-            chunkSize = LevelChunk.GetComponentInChildren<SpriteRenderer>().bounds.size.x;
+        if (chunkCounter < MaxChunkCount)
+        {
             Vector3 chunkPosition = currentChunk.transform.position + new Vector3(chunkSize, 0, 0);
             Instantiate(LevelChunk, chunkPosition , currentChunk.transform.rotation);
-            latestChunk = currentChunk;
-            chunkCounter++; 
+            chunkCounter++;
+        }
+        else
+        {
+            Vector3 chunkPosition = currentChunk.transform.position + new Vector3(chunkSize, 0, 0);
+            Instantiate(FinishChunk, chunkPosition , currentChunk.transform.rotation);
+        } 
     }
 }
