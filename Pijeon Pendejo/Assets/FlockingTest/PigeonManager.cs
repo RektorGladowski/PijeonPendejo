@@ -4,40 +4,37 @@ using UnityEngine;
 
 public class PigeonManager : MonoBehaviour
 {
-	public GameObject[] units;
-	public GameObject unitPrefab;
-	public int numUnits = 100;
-	public Vector3 range = new Vector3(5, 5, 5);
+	[HideInInspector]
+	public List<PigeonUnit> pigeonUnits = new List<PigeonUnit>();
+	public int AvailablePigeonFollowers { get; set; }
 
-	[Range(0, 200)]
-	public int neighbourDistance = 50;
+	public GameObject pigeonUnitPrefab;
+	public float spawnTimer = 0.5f;
+	public float initialSpeed = 10f;
 
-	[Range(0, 500f)]
-	public float maxForce = 0.5f;
+	private float timer = 0f;
+	
 
-	[Range(0, 20f)]
-	public float maxVelocity = 2.0f;
-
-	public bool willful, obedient, seekGoal;
-
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.yellow;
-		Gizmos.DrawWireCube(transform.position, range * 2);
-		Gizmos.color = Color.green;
-		Gizmos.DrawWireSphere(transform.position, 0.2f);
-	}
-
-	void Start()
+	private void Start()
     {
-		units = new GameObject[numUnits];
-
-		for (int i = 0; i < numUnits; i++)
-		{
-			Vector3 unitPos = new Vector3(Random.Range(-range.x, range.x), Random.Range(-range.y, range.y), 0);
-			units[i] = Instantiate(unitPrefab, transform.position + unitPos, Quaternion.identity) as GameObject;
-			units[i].GetComponent<Unit>().manager = this;
-		}
+		AvailablePigeonFollowers = 0;
     }
 
+	private void Update()
+	{
+		timer += Time.deltaTime;
+
+		if (timer > spawnTimer)
+		{
+			timer = 0f;
+			GameObject pigeon = Instantiate(pigeonUnitPrefab, transform.position, Quaternion.identity) as GameObject;
+			PigeonUnit pUnit = pigeon.GetComponent<PigeonUnit>();
+
+			pUnit.SetPigeonManagerRef(this);
+			pUnit.SetInitialPositionAndSpeed(transform.position, new Vector3(-initialSpeed, 0f, 0f));
+			pUnit.SetCharacterTrait((PigeonUnitCharacter)Random.Range(0, 4));
+
+			pigeonUnits.Add(pUnit);
+		}
+	}
 }

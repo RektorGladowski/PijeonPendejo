@@ -133,6 +133,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e142e051e5ed973489c68c82b2966283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  initialAttractionDistance: 15
+  neighbourhoodDistance: 25
+  followForce: 50
+  maxFollowVelocity: 14
+  rotationSpeed: 10
+  pigeonSearchMask:
+    serializedVersion: 2
+    m_Bits: 256
+  newMasterSearchCircle: 3
+  behaviourChangeChance: 5
+  isFollowingMaster: 0
 --- !u!114 &1134640439509265179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,10 +156,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a2151ef047fe124da1ae07afe17f584, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
-  location: {x: 0, y: 0}
-  velocity: {x: 0, y: 0}
-  ControlledByPlayer: 0
 --- !u!1001 &6950885373066487514
 PrefabInstance:
   m_ObjectHideFlags: 0
