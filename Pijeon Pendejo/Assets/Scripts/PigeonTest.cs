@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PigeonTest : MonoBehaviour
 {
@@ -16,7 +14,6 @@ public class PigeonTest : MonoBehaviour
      void Update()
      {
          Vector2 mi = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-         Debug.Log(Input.GetAxisRaw("Horizontal"));
          mv = mi.normalized * speed;
      }
  
