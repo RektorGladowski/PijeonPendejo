@@ -20,5 +20,14 @@ public class PigeonTest : MonoBehaviour
      private void FixedUpdate()
      {
          rb.MovePosition(rb.position + mv * Time.fixedDeltaTime);
-     }﻿
+     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Pigeon collided with enemy");
+            Destroy(gameObject);
+        }
+    }
 }
