@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 273332374}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -621,6 +621,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CameraConfine
       objectReference: {fileID: 0}
+    - target: {fileID: 4002949651085923506, guid: 9d1833dde76c5f5448d53c91c5ae932e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4002949651085923504, guid: 9d1833dde76c5f5448d53c91c5ae932e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -689,6 +694,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: ConfinedCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7279010608431031519, guid: d843aeafec10eb443b714e6ab0dfe42f,
+        type: 3}
+      propertyPath: m_TagString
+      value: MainCamera
       objectReference: {fileID: 0}
     - target: {fileID: 7279010608431031513, guid: d843aeafec10eb443b714e6ab0dfe42f,
         type: 3}
