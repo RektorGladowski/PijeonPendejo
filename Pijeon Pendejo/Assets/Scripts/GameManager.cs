@@ -1,6 +1,7 @@
 ﻿using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,19 +12,23 @@ public class GameManager : MonoBehaviour
     public GameObject EnemySpawner;
     public PigeonManager pigeonManager;
     public GameObject UpgradePanel;
+    public GameObject GameOverScreen;
+    public TextMeshProUGUI ScoreText;
 
     public static bool GameStarted; //Turns false after first space press
     public static bool GameEnded;
+    public static int PigeonsReceived;
 
     private void Start()
     {
         GameStarted = false;
         GameEnded = false;
+        PigeonsReceived = 0;
     }
 
     void Update()
     {
-        if(!GameStarted && Input.GetButtonDown("Pigeon Thrust"))
+        if (!GameStarted && Input.GetButtonDown("Pigeon Thrust"))
         {
             GameStarted = true;
             if (BloodyExplosion)
@@ -37,9 +42,22 @@ public class GameManager : MonoBehaviour
             UpgradePanel.SetActive(false);
             pigeonManager.RestartTheGame(PigeonAtStart.transform);
         }
-        else if(GameEnded && Input.GetButtonDown("Pigeon Thrust"))
+        else if (GameEnded)
         {
-            SceneManager.LoadScene(0);
+            if(GameOverScreen.active == false)
+            {
+                SetGameOverScreen();
+            }
+            if (Input.GetButtonDown("Pigeon Thrust"))
+            {
+                SceneManager.LoadScene(0);
+            }
         }
+    }
+
+    private void SetGameOverScreen()
+    {
+        GameOverScreen.SetActive(true);
+        ScoreText.text = "SCORE: " + PigeonsReceived;
     }
 }

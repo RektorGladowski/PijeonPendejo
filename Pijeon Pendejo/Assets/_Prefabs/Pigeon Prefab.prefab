@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3131379848893363266}
   - component: {fileID: 2064611544}
+  - component: {fileID: 3839127122848894252}
   m_Layer: 8
   m_Name: ShitSpawner
   m_TagString: Untagged
@@ -49,6 +50,102 @@ MonoBehaviour:
   - {fileID: 5427652328423454463, guid: e8ed2085647283e46acb5fa26fcc2529, type: 3}
   PigeonAnimator: {fileID: 6908887450819375143}
   MaxShitDelay: 1.5
+--- !u!82 &3839127122848894252
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2384287483534998099}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 7f97d2bcee28f68499143bb1bf415aea, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 193
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2652627820023021765
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,11 +270,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2652627820023021760}
     m_Modifications:
-    - target: {fileID: 3046953901115844910, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
-        type: 3}
-      propertyPath: m_Name
-      value: Pigeon
-      objectReference: {fileID: 0}
     - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -247,6 +339,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.45936
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953901115844910, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_Name
+      value: Pigeon
       objectReference: {fileID: 0}
     - target: {fileID: 3046953900076193699, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
         type: 3}

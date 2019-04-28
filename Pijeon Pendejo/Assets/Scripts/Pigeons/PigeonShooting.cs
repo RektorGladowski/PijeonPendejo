@@ -11,12 +11,14 @@ public class PigeonShooting : MonoBehaviour
     
     private bool shitReady;
     private Rigidbody2D pigeonRb;
+    private AudioSource audioSource;
     private static readonly int ShitCooledDown = Animator.StringToHash("ShitCooledDown");
 	private ShitUpgrade shitStats;
 
     private void Start()
     {
         pigeonRb = gameObject.GetComponentInParent<Rigidbody2D>();
+        audioSource = gameObject.GetComponent<AudioSource>();
 
 		shitStats = Upgradeton.instance.GetShitStats();
         StartCoroutine(CooldownShit(shitStats.shitInitialCooldown));
@@ -43,6 +45,7 @@ public class PigeonShooting : MonoBehaviour
     private IEnumerator DeployShit(float delay)
     {
         yield return new WaitForSeconds(delay);
+        audioSource.Play();
         GameObject deployedShit = Instantiate(GetRandomShit(), transform.position, transform.rotation);
 		Vector3 localScale = deployedShit.transform.localScale;
 		deployedShit.transform.localScale = localScale * shitStats.shitSizeMultiplier;
