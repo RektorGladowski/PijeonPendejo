@@ -143,7 +143,8 @@ public struct FollowerStatsPack
 	public float maxFollowSpeed;
 	public float maxFollowForce;
 
-	public float linearDrag;
+	public float minLinearDrag;
+	public float maxLinearDrag;
 	public float angularDrag;
 }
 
