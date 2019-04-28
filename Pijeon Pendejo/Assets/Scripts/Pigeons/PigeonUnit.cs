@@ -339,7 +339,7 @@ public class PigeonUnit : MonoBehaviour
 
 		do {
 			newMaster = pigeonManager.pigeonUnits[Random.Range(0, pigeonManager.pigeonUnits.Count)];
-		} while (newMaster == this);
+		} while (newMaster == this || !newMaster.isFollowingMaster);
 
 		SetAsMasterPigeon(newMaster.gameObject);
 
