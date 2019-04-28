@@ -10,7 +10,8 @@ public class PigeonUnit : MonoBehaviour
 	public static Transform GetMasterPigeonTransform { get { return MasterPigeon.transform; } }
 
     public GameObject bloodyExplosion;
-    public GameObject pigeonPosition;
+	public GameObject leaderEffect;
+	public GameObject pigeonPosition;
 
 	[Header("Follower Stats")]
 	public float initialAttractionDistance = 15f;
@@ -47,12 +48,15 @@ public class PigeonUnit : MonoBehaviour
 
 	public void SetThisInstanceAsMasterPigeon()
 	{
+		gameObject.tag = "MainPigeon";
 		isMasterPigeon = true;
 		
 		if (gameObject.GetComponent<MasterPigeonMovement>() == null)
 		{
 			gameObject.AddComponent<MasterPigeonMovement>();
 		}
+
+		AddLeaderEffect();
 
 		pigeonManager.MasterPigeonWasChosen();
 	}
@@ -358,6 +362,12 @@ public class PigeonUnit : MonoBehaviour
 		ExplodeNicely();
 	}
 	#endregion
+
+	private void AddLeaderEffect()
+	{
+		GameObject effect = Instantiate(leaderEffect, pigeonPosition.transform.position, Quaternion.identity) as GameObject;
+		effect.transform.SetParent(transform);
+	}
 }
 
 public enum PigeonUnitCharacter

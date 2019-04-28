@@ -135,6 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bloodyExplosion: {fileID: 1651407365505755140, guid: 55f1ec52675ad4b40bbe520485059524,
     type: 3}
+  leaderEffect: {fileID: 6097683697745596528, guid: 744c0876711eae143ac9cec55e0e850c,
+    type: 3}
   pigeonPosition: {fileID: 6908887450819375142}
   initialAttractionDistance: 4
   neighbourhoodDistance: 1.5
