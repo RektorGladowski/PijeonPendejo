@@ -24,15 +24,15 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 894709bb3dc18c34c9437c3cc697101b, type: 3}
-        m_Scale: {x: 5.25, y: 1}
+        m_Texture: {fileID: 2800000, guid: aafcdce5b27ba654ab994795a9b194d2, type: 3}
+        m_Scale: {x: 4.95, y: 1.13}
         m_Offset: {x: -3.92, y: 0}
     - _Mask:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _InvFade: 0.26
+    - _InvFade: 0.01
     - _TexCoordScrollX: 1
     - _TexCoordScrollY: 1
     m_Colors:
