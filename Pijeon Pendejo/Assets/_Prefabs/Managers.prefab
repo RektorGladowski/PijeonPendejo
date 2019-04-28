@@ -78,7 +78,7 @@ MonoBehaviour:
   Hawk: {fileID: 2662737880486930927, guid: 790a990e7cbeab44184d7d6d544b1ace, type: 3}
   Eagle: {fileID: 1923398829305287753, guid: 815374317d29ea64c9f56feafa1b6fb4, type: 3}
   Drone: {fileID: 0}
-  Blimp: {fileID: 0}
+  Blimp: {fileID: 466612338389049204, guid: cfe41a5708c31e34692d1bb5430fa2f0, type: 3}
   Kraken: {fileID: 196525257375315100, guid: 48b95daf0771c0948b43b2b602a5c81a, type: 3}
   Narwal: {fileID: 2164911495312018105, guid: 1dcd1e180a0654e4e8d42d4d54f3ab40, type: 3}
   Ship: {fileID: 0}

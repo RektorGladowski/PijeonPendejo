@@ -92,6 +92,5 @@ public class EnemySpawner : MonoBehaviour
         }
 
         lastSpawn += Distance;
-        Debug.Log("last spawn: " + lastSpawn);
     }
 }
