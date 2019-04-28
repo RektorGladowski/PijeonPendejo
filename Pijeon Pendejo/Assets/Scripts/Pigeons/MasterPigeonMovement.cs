@@ -10,9 +10,9 @@ public class MasterPigeonMovement : MonoBehaviour
 	[Header("Movement Parameters")]
 	public float minimumGTForSwing = 50f;
 	public float gravityForceGrowthPerSecond = 10f;
-	public float gravityTorqueGrowthPerSecond = 310f;
-	public float thrustForce = 120f;
-	public float thrustTorque = 15f;
+	public float gravityTorqueGrowthPerSecond = 10f;
+	private float thrustForce = 120f;
+	private float thrustTorque = 15f;
 
 	[Header("Limits")]
 	public float maxAngularVelocity = 50f;
@@ -24,6 +24,7 @@ public class MasterPigeonMovement : MonoBehaviour
 
     private Animator m_Animator;
 	private GravityTorqueMode previousTorqueMode;
+	private SpeedUpgrade speedStats;
 
 
     private void Start()
@@ -35,13 +36,26 @@ public class MasterPigeonMovement : MonoBehaviour
 	{
 		pigeonRb = GetComponent<Rigidbody2D>();
         m_Animator = gameObject.GetComponentInChildren<Animator>();
-		
+
+		SetSpeedStats();
 
         if (pigeonRb.velocity == Vector2.zero)
 		{
 			pigeonRb.velocity = new Vector3(startingVelocity, 0f, 0f);
-			PigeonUnit.SetAsMasterPigeon(gameObject);
 		}
+	}
+
+	private void SetSpeedStats()
+	{
+		speedStats = Upgradeton.instance.GetSpeedStats();
+
+		pigeonRb.mass = speedStats.masterStats.mass;
+		pigeonRb.drag = speedStats.masterStats.linearDrag;
+		pigeonRb.angularDrag = speedStats.masterStats.angularDrag;
+
+		maxVelocity = speedStats.masterStats.maxSpeed;
+		thrustForce = speedStats.masterStats.thrustForce;
+		thrustTorque = speedStats.masterStats.thrustTorque;
 	}
 
     private void Update()
@@ -65,15 +79,6 @@ public class MasterPigeonMovement : MonoBehaviour
             m_Animator.speed = 1;
         }
 	}
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("Pigeon collided with enemy");
-            Destroy(gameObject);
-        }
-    }
 
     private void ClampMasterPigeonVelocity()
 	{

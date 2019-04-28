@@ -29,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Update()
     {
-        if (PigeonUnit.GetMasterPigeonPosition().x - lastSpawn >= 0)
+        if (PigeonUnit.GetMasterPigeonPosition.x - lastSpawn >= 0)
         {
             SpawnEnemy();
         }

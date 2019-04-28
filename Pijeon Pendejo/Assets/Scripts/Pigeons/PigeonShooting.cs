@@ -4,44 +4,61 @@ using UnityEngine;
 
 public class PigeonShooting : MonoBehaviour
 {
-    public GameObject ShootableObject;
-    public float ShitInitialCooldown;
-    public float ShitCooldown;
+    public List<GameObject> ShootableObjects;
+    public Animator PigeonAnimator;
     
     private bool shitReady;
+    private Rigidbody2D pigeonRb;
+    private static readonly int ShitCooledDown = Animator.StringToHash("ShitCooledDown");
+	private ShitUpgrade shitStats;
+
     private void Start()
     {
-        StartCoroutine(CooldownShit(ShitInitialCooldown));
+        pigeonRb = gameObject.GetComponentInParent<Rigidbody2D>();
+
+		shitStats = Upgradeton.instance.GetShitStats();
+        StartCoroutine(CooldownShit(shitStats.shitInitialCooldown));
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetButtonDown("Deploy Shit"))
         {
             if (shitReady)
             {
-                Debug.Log("S H I T !!!");
                 DeployShit();
                 shitReady = false;
-                StartCoroutine(CooldownShit(ShitCooldown));
+                StartCoroutine(CooldownShit(shitStats.shitCooldown));
             }
             else
             {
                 //TODO: handle shit not being ready
                 Debug.Log("shit not ready :(");
             }
-            
         }
     }
 
     private void DeployShit()
     {
-        Instantiate(ShootableObject, transform.position, transform.rotation);
+        GameObject deployedShit = Instantiate(GetRandomShit(), transform.position, transform.rotation);
+		Vector3 localScale = deployedShit.transform.localScale;
+		deployedShit.transform.localScale = localScale * shitStats.shitSizeMultiplier;
+
+        Rigidbody2D shitRb = deployedShit.GetComponent<Rigidbody2D>();
+
+        shitRb.velocity = pigeonRb.velocity;
+        shitRb.angularVelocity = pigeonRb.angularVelocity;
+    }
+
+    private GameObject GetRandomShit()
+    {
+        return ShootableObjects[Random.Range(0, ShootableObjects.Count)];
     }
     
     IEnumerator CooldownShit(float cooldown)
     {
         yield return new WaitForSeconds(cooldown);
         shitReady = true;
+        PigeonAnimator.SetTrigger(ShitCooledDown);
     }
 }

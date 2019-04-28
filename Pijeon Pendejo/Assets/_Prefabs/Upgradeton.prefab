@@ -1,0 +1,104 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8463637209814722168
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2999418884813320785}
+  - component: {fileID: 6614212422804742400}
+  m_Layer: 0
+  m_Name: Upgradeton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2999418884813320785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8463637209814722168}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6614212422804742400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8463637209814722168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd78eec6daee81244886f69a540c6138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeedUpgrades:
+  - upgradeTier: 1
+    upgradeCost: 2
+    masterStats:
+      mass: 2
+      maxSpeed: 12
+      thrustForce: 120
+      thrustTorque: 15
+      linearDrag: 0.2
+      angularDrag: 0
+    followerStats:
+      mass: 2
+      maxFollowSpeed: 12
+      maxFollowForce: 120
+      linearDrag: 15
+      angularDrag: 0.2
+  ShitUpgrades:
+  - upgradeTier: 1
+    upgradeCost: 2
+    shitCooldown: 5
+    shitInitialCooldown: 4
+    shitSizeMultiplier: 1
+  - upgradeTier: 2
+    upgradeCost: 3
+    shitCooldown: 4
+    shitInitialCooldown: 3
+    shitSizeMultiplier: 2
+  - upgradeTier: 3
+    upgradeCost: 3
+    shitCooldown: 3
+    shitInitialCooldown: 3
+    shitSizeMultiplier: 3
+  - upgradeTier: 4
+    upgradeCost: 8
+    shitCooldown: 2
+    shitInitialCooldown: 3
+    shitSizeMultiplier: 4
+  - upgradeTier: 5
+    upgradeCost: 12
+    shitCooldown: 1
+    shitInitialCooldown: 3
+    shitSizeMultiplier: 5
+  TeamUpgrades:
+  - upgradeTier: 1
+    upgradeCost: 5
+    numberOfStarterFollowers: 1
+  - upgradeTier: 2
+    upgradeCost: 9
+    numberOfStarterFollowers: 2
+  - upgradeTier: 3
+    upgradeCost: 14
+    numberOfStarterFollowers: 3
+  - upgradeTier: 4
+    upgradeCost: 21
+    numberOfStarterFollowers: 4
+  - upgradeTier: 5
+    upgradeCost: 32
+    numberOfStarterFollowers: 5
+  maxUpgradeLevelText: Max Upgrade level
