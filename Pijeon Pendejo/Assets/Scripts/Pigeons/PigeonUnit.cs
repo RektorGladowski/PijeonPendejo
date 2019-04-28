@@ -260,6 +260,8 @@ public class PigeonUnit : MonoBehaviour
 
 	private void PrepareToDie()
 	{
+		pigeonManager.RemovePigeonUnit(this);
+
 		if (isMasterPigeon)
 		{
 			if (FindNewMasterPigeon())

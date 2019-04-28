@@ -38,4 +38,12 @@ public class PigeonManager : MonoBehaviour
 			pigeonUnits.Add(pUnit);
 		}
 	}
+
+	public void RemovePigeonUnit(PigeonUnit unit)
+	{
+		if (pigeonUnits.Contains(unit))
+		{
+			pigeonUnits.Remove(unit);
+		}
+	}
 }
