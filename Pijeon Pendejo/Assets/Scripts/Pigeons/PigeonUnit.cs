@@ -78,11 +78,11 @@ public class PigeonUnit : MonoBehaviour
 		pigeonRb = GetComponent<Rigidbody2D>();
 		speedStats = Upgradeton.instance.GetSpeedStats();
 
-		pigeonRb.mass = speedStats.followerStats.mass;
+		pigeonRb.mass = Random.Range(speedStats.followerStats.minMass, speedStats.followerStats.maxMass);
 		pigeonRb.drag = Random.Range(speedStats.followerStats.minLinearDrag, speedStats.followerStats.maxLinearDrag);
 		pigeonRb.angularDrag = speedStats.followerStats.angularDrag;
 
-		followForce = speedStats.followerStats.maxFollowForce;
+		followForce = Random.Range(speedStats.followerStats.minFollowForce, speedStats.followerStats.maxFollowForce);
 		maxFollowVelocity = speedStats.followerStats.maxFollowSpeed;
 	}
 

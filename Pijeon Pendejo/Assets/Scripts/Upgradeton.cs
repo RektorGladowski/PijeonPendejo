@@ -139,8 +139,10 @@ public class TeamUpgrade : Upgrade
 [System.Serializable]
 public struct FollowerStatsPack
 {
-	public float mass;
+	public float minMass;
+	public float maxMass;
 	public float maxFollowSpeed;
+	public float minFollowForce;
 	public float maxFollowForce;
 
 	public float minLinearDrag;

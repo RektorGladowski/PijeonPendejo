@@ -51,13 +51,16 @@ public class Hawk : Enemy
             rb.velocity = new Vector2(0, 0);
             rb.AddForce((currentDestination.position - transform.position) * FlightSpeed);
         }
+        else if ((collision.gameObject.CompareTag("Pigeon") || collision.gameObject.CompareTag("MainPigeon")))
+        {
+            if (Collider)
+                Collider.enabled = false;
+        }
     }
 
     private IEnumerator Attack(GameObject objectToAttack, float time)
     {
         rb.velocity = new Vector2(0, 0);
-        //rb.constraints = RigidbodyConstraints2D.None;
-        //transform.LookAt(objectToAttack.transform, Vector3.back);
 
         yield return new WaitForSeconds(time);
         if (objectToAttack)

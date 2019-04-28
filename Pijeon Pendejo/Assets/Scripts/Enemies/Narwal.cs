@@ -14,6 +14,15 @@ public class Narwal : Enemy
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Pigeon") || collision.gameObject.CompareTag("MainPigeon"))
+        {
+            if (Collider)
+                Collider.enabled = false;
+        }
+    }
+
     private IEnumerator Attack(GameObject objectToAttack, float time)
     {
         yield return new WaitForSeconds(time);
