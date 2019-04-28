@@ -5,7 +5,11 @@ using UnityEngine;
 public class PigeonUnit : MonoBehaviour
 {
 	private static GameObject MasterPigeon;
+    
 	public static Vector3 GetMasterPigeonPosition { get { return MasterPigeon.transform.position; } }
+
+    public GameObject bloodyExplosion;
+    public GameObject pigeonPosition;
 
 	[Header("Follower Stats")]
 	public float initialAttractionDistance = 15f;
@@ -70,9 +74,20 @@ public class PigeonUnit : MonoBehaviour
 
 	private void Update()
 	{
-		if (!isMasterPigeon)
+
+        //suicide button
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            //to jest to złe miejsce
+            Instantiate(bloodyExplosion, pigeonPosition.transform.position, Quaternion.identity);
+            Debug.Log("FEEL IT YOU GOT IT EXPLOSIOOOON");
+        }
+
+        if (!isMasterPigeon)
 		{
-			if (!isFollowingMaster)
+            
+
+            if (!isFollowingMaster)
 			{
 				if (Vector2.Distance(transform.position, MasterPigeon.transform.position) <= initialAttractionDistance)
 				{
@@ -297,7 +312,8 @@ public class PigeonUnit : MonoBehaviour
 
 	private void ExplodeNicely()
 	{
-		// TODO Explode
+        // TODO Explode
+     
 		Destroy(gameObject);
 	}
 	#endregion
