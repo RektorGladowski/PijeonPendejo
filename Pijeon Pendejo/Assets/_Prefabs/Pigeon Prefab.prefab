@@ -48,8 +48,6 @@ MonoBehaviour:
   - {fileID: 5427652328423454463, guid: 74cc907bfeac3754cacc3c48fa372793, type: 3}
   - {fileID: 5427652328423454463, guid: e8ed2085647283e46acb5fa26fcc2529, type: 3}
   PigeonAnimator: {fileID: 6908887450819375143}
-  ShitInitialCooldown: 1
-  ShitCooldown: 4
 --- !u!1 &2652627820023021765
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,14 +57,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2652627820023021760}
-  - component: {fileID: 2652627820023021761}
   - component: {fileID: 2652627820023021763}
   - component: {fileID: 2652627820023021764}
-  - component: {fileID: 2652627820023021762}
   - component: {fileID: 497916808093482451}
   - component: {fileID: 1760963997}
   m_Layer: 8
-  m_Name: MasterPigeon
+  m_Name: Pigeon Prefab
   m_TagString: MainPigeon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -80,7 +76,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2652627820023021765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.884823, y: 0.2244792, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6908887450819375140}
@@ -88,54 +84,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &2652627820023021761
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2652627820023021765}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 515d2481e870c1640bb6e6e41182c301, type: 3}
-  m_Color: {r: 1, g: 0.044544328, b: 0.044544328, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 2.41, y: 1.85}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
 --- !u!50 &2652627820023021763
 Rigidbody2D:
   serializedVersion: 4
@@ -170,31 +118,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.3}
   m_Size: {x: 1.48, y: 0.57}
   m_Direction: 1
---- !u!114 &2652627820023021762
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2652627820023021765}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe2ed42c7534ad844a97c5f478c69091, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingVelocity: 12
-  baseGravityForce: 30
-  baseGravityTorque: 20
-  minimumGTForSwing: 50
-  gravityForceGrowthPerSecond: 10
-  gravityTorqueGrowthPerSecond: 10
-  thrustForce: 120
-  thrustTorque: 15
-  maxAngularVelocity: 50
-  maxVelocity: 12
 --- !u!114 &497916808093482451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,8 +138,6 @@ MonoBehaviour:
   pigeonPosition: {fileID: 6908887450819375142}
   initialAttractionDistance: 15
   neighbourhoodDistance: 25
-  followForce: 50
-  maxFollowVelocity: 14
   rotationSpeed: 90
   pigeonSearchMask:
     serializedVersion: 2
@@ -247,11 +171,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2652627820023021760}
     m_Modifications:
-    - target: {fileID: 3046953901115844910, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
-        type: 3}
-      propertyPath: m_Name
-      value: Pigeon
-      objectReference: {fileID: 0}
     - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -322,15 +241,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.45936
       objectReference: {fileID: 0}
-    - target: {fileID: 3046953900076193699, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+    - target: {fileID: 3046953901115844910, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -1.8924
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046953900076193699, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -9.6097
+      propertyPath: m_Name
+      value: Pigeon
       objectReference: {fileID: 0}
     - target: {fileID: 3046953899059842539, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
         type: 3}
@@ -347,10 +261,15 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -9.5598
       objectReference: {fileID: 0}
-    - target: {fileID: 3046953900076193696, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+    - target: {fileID: 3046953900076193699, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
         type: 3}
-      propertyPath: m_SortingOrder
-      value: 10
+      propertyPath: m_LocalPosition.x
+      value: -1.8924
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953900076193699, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.6097
       objectReference: {fileID: 0}
     - target: {fileID: 3046953899059842536, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
         type: 3}
@@ -361,6 +280,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SortingOrder
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953900076193696, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62ba4c3499b775e49b0a3c29bd40ad09, type: 3}
