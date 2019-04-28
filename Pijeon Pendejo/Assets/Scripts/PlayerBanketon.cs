@@ -52,4 +52,9 @@ public class PlayerBanketon : MonoBehaviour
 	{
 		return playerPigeons.ToString();
 	}
+
+    public void AddPigeons(int amount)
+    {
+        playerPigeons += amount;
+    }
 }
