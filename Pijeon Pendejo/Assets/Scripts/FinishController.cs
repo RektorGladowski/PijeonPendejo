@@ -14,6 +14,12 @@ public class FinishController : MonoBehaviour
             collision.gameObject.SetActive(false);
             PigeonUnit.MasterPigeon = EndPoint;
             StartCoroutine(SetPijeonPendejoActive());
+
+            PlayerBanketon.instance.AddPigeons(1);
+        }
+        else if(collision.gameObject.CompareTag("Pigeon"))
+        {
+            PlayerBanketon.instance.AddPigeons(1);
         }
     }
 
