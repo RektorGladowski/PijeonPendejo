@@ -6,6 +6,7 @@ public class FinishController : MonoBehaviour
 {
     public GameObject EndPoint;
     public GameObject PijeonPendejo;
+    private int pigeonsReceived = 0;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,18 +16,20 @@ public class FinishController : MonoBehaviour
             PigeonUnit.MasterPigeon = EndPoint;
             StartCoroutine(SetPijeonPendejoActive());
 
-            PlayerBanketon.instance.AddPigeons(1);
+            ++pigeonsReceived;
         }
         else if(collision.gameObject.CompareTag("Pigeon"))
         {
-            PlayerBanketon.instance.AddPigeons(1);
+            ++pigeonsReceived;
         }
     }
 
     private IEnumerator SetPijeonPendejoActive()
     {
-        yield return new WaitForSeconds(2);
         PijeonPendejo.SetActive(true);
+        yield return new WaitForSeconds(3);
+        PlayerBanketon.instance.AddPigeons(pigeonsReceived);
+        GameManager.PigeonsReceived = pigeonsReceived;
         GameManager.GameEnded = true;
     }
 }

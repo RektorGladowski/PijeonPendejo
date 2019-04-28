@@ -315,6 +315,7 @@ public class PigeonUnit : MonoBehaviour
 			else
 			{
                 //Debug.LogError("Player should lose now, fucking put something here");
+                GameManager.PigeonsReceived = 0;
                 GameManager.GameEnded = true;
 				// TODO Stop the game and show game over screen
 			}
