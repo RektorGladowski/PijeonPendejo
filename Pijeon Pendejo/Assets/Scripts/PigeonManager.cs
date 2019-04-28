@@ -8,16 +8,22 @@ public class PigeonManager : MonoBehaviour
 	public List<PigeonUnit> pigeonUnits = new List<PigeonUnit>();
 	public int AvailablePigeonFollowers { get; set; }
 
+	[Header("Starting info")]
 	public GameObject pigeonUnitPrefab;
 	public float initialTeamRadius = 4f;
 
+	[Header("Pigeon size randomization")]
+	public float minPigeonSize = 0.7f;
+	public float maxPigeonSize = 1.5f;
+
+	[Header("Non followers spawner settings")]
 	public float spawnTimer = 0.5f;
 	public float initialSpeed = 10f;
-	private float timer = 0f;
 
 	private CinemachineVirtualCamera cinemachineCamera;
 	private TeamUpgrade teamStats;
-	
+	private float timer = 0f;
+
 
 	private void Start()
     {
@@ -62,6 +68,10 @@ public class PigeonManager : MonoBehaviour
 		{
 			GameObject pigeon = Instantiate(pigeonUnitPrefab, transform.position + GetRandomV2Offset(initialTeamRadius), Quaternion.identity) as GameObject;
 			PigeonUnit p = pigeon.GetComponent<PigeonUnit>();
+
+			Vector3 localScale = pigeon.transform.localScale;
+			localScale *= Random.Range(minPigeonSize, maxPigeonSize);
+			pigeon.transform.localScale = localScale;
 
 			p.SetStats();
 			p.SetPigeonManagerRef(this);
