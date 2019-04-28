@@ -138,7 +138,7 @@ MonoBehaviour:
   pigeonPosition: {fileID: 6908887450819375142}
   initialAttractionDistance: 4
   neighbourhoodDistance: 1.5
-  rotationSpeed: 90
+  rotationSpeed: 2
   behaviourChangeChance: 5
   alignmentWeight: 0.2
   separationWeight: 4
