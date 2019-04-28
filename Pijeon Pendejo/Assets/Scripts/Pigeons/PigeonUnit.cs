@@ -329,6 +329,11 @@ public class PigeonUnit : MonoBehaviour
      
 		Destroy(gameObject);
 	}
+
+	public void ForceKillPigeon()
+	{
+		ExplodeNicely();
+	}
 	#endregion
 }
 

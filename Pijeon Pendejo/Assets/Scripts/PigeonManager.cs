@@ -9,19 +9,56 @@ public class PigeonManager : MonoBehaviour
 	public int AvailablePigeonFollowers { get; set; }
 
 	public GameObject pigeonUnitPrefab;
+
 	public float spawnTimer = 0.5f;
 	public float initialSpeed = 10f;
 
 	private float timer = 0f;
+
+	private TeamUpgrade teamStats;
 	
 
 	private void Start()
     {
-		AvailablePigeonFollowers = 0;
+		RestartTheGame();
     }
+
+	public void RestartTheGame()
+	{
+		ResetPigeonData();
+
+		SpawnInitialPigeons();
+	}
+
+	private void ResetPigeonData()
+	{
+		foreach (PigeonUnit pUnit in pigeonUnits)
+		{
+			pUnit.ForceKillPigeon();
+		}
+
+		pigeonUnits.Clear();
+		AvailablePigeonFollowers = 0;
+
+		teamStats = Upgradeton.instance.GetTeamStats();
+	}
+
+	private void SpawnInitialPigeons()
+	{
+		// Spawn master pigeon
+		GameObject masterPigeon = Instantiate(pigeonUnitPrefab, transform.position, Quaternion.identity) as GameObject;
+		PigeonUnit pUnit = masterPigeon.GetComponent<PigeonUnit>();
+
+		pUnit.SetStats();
+		pUnit.SetPigeonManagerRef(this);
+		pigeonUnits.Add(pUnit);
+
+		PigeonUnit.SetAsMasterPigeon(masterPigeon);
+	}
 
 	private void Update()
 	{
+		/*
 		timer += Time.deltaTime;
 
 		if (timer > spawnTimer)
@@ -37,6 +74,7 @@ public class PigeonManager : MonoBehaviour
 
 			pigeonUnits.Add(pUnit);
 		}
+		*/
 	}
 
 	public void RemovePigeonUnit(PigeonUnit unit)

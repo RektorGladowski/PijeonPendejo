@@ -29,6 +29,7 @@ public class MasterPigeonMovement : MonoBehaviour
 
     private void Start()
     {
+		Debug.LogError("HALOKURWA");
 		InitializeMasterPigeon();
     }
 
@@ -42,7 +43,6 @@ public class MasterPigeonMovement : MonoBehaviour
         if (pigeonRb.velocity == Vector2.zero)
 		{
 			pigeonRb.velocity = new Vector3(startingVelocity, 0f, 0f);
-			PigeonUnit.SetAsMasterPigeon(gameObject);
 		}
 	}
 
