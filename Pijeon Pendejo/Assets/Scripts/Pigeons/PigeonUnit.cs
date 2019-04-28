@@ -197,6 +197,36 @@ public class PigeonUnit : MonoBehaviour
 		return Vector2.zero;
 	}
 
+	private Vector2 Separation()
+	{
+		Vector2 sum = Vector2.zero;
+		int count = 0;
+
+		foreach (PigeonUnit pUnit in pigeonManager.pigeonUnits)
+		{
+			if (pUnit == this)
+			{
+				continue;
+			}
+
+			if (Vector2.Distance(transform.position, pUnit.transform.position) < neighbourhoodDistance)
+			{
+				Vector2 distanceVector = pUnit.transform.position - transform.position;
+				sum += distanceVector;
+				count++;
+			}
+		}
+
+		if (count > 0)
+		{
+			sum /= count;
+			sum *= -1;
+			return sum;
+		}
+
+		return Vector2.zero;
+	}
+
 	private void Flock()
 	{
 		if (isFollowingMaster)
@@ -228,7 +258,7 @@ public class PigeonUnit : MonoBehaviour
 
 					case PigeonUnitCharacter.GroupTraveler:
 						{
-							currentForce = Seek(GetMasterPigeonPosition) + Align() + Cohesion();
+							currentForce = Seek(GetMasterPigeonPosition) + Align() + Cohesion() + Separation();
 							currentForce = currentForce.normalized;
 							break;
 						}
