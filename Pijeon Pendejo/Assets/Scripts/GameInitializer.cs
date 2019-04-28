@@ -15,7 +15,17 @@ public class GameInitializer : MonoBehaviour
 
 	private void SpawnTonPrefabs()
 	{
-		upgradetonObject = Instantiate(upgradetonPrefab, transform.position, transform.rotation) as GameObject;
-		banketonObject = Instantiate(banketonPrefab, transform.position, transform.rotation) as GameObject;
+		if (Upgradeton.instance == null)
+		{
+			upgradetonObject = Instantiate(upgradetonPrefab, transform.position, transform.rotation) as GameObject;
+			DontDestroyOnLoad(upgradetonObject);
+		}
+		
+		if (PlayerBanketon.instance == null)
+		{
+			banketonObject = Instantiate(banketonPrefab, transform.position, transform.rotation) as GameObject;
+			DontDestroyOnLoad(banketonObject);
+		}
+		
 	}
 }
