@@ -33,12 +33,12 @@ public class PigeonManager : MonoBehaviour
 	private float timer = 0f;
 
 
-	private void Start()
+	private void Awake()
     {
 		cinemachineCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CinemachineVirtualCamera>();
 
 		//To do remove this
-		RestartTheGame(transform);
+		//RestartTheGame(transform);
     }
 
 	public void RestartTheGame(Transform startingTransform)
