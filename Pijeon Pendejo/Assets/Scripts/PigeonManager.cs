@@ -6,7 +6,9 @@ public class PigeonManager : MonoBehaviour
 {
 	[HideInInspector]
 	public List<PigeonUnit> pigeonUnits = new List<PigeonUnit>();
-	public int AvailablePigeonFollowers { get; set; }
+	public static int AvailablePigeonFollowers { get; set; }
+	public static int GetCoveredDistanceInMeters { get { return (int)(PigeonUnit.GetMasterPigeonPosition.x - startPosition.position.x); } }
+	private static Transform startPosition;
 
 	[Header("Starting info")]
 	public GameObject pigeonUnitPrefab;
@@ -30,7 +32,9 @@ public class PigeonManager : MonoBehaviour
 	private CinemachineVirtualCamera cinemachineCamera;
 	private TeamUpgrade teamStats;
 	private float currentSpawnTime = 3f;
-	private float timer = 0f;
+	private  float timer = 0f;
+
+	
 
 
 	private void Awake()
@@ -43,6 +47,7 @@ public class PigeonManager : MonoBehaviour
 
 	public void RestartTheGame(Transform startingTransform)
 	{
+		startPosition = startingTransform;
 		ResetPigeonData();
 		SpawnInitialPigeons(startingTransform);
 	}
