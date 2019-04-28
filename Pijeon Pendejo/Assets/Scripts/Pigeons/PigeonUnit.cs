@@ -90,6 +90,7 @@ public class PigeonUnit : MonoBehaviour
 
 	private void Update()
 	{
+		
         //suicide button
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -97,6 +98,7 @@ public class PigeonUnit : MonoBehaviour
             Instantiate(bloodyExplosion, pigeonPosition.transform.position, Quaternion.identity);
             Debug.Log("FEEL IT YOU GOT IT EXPLOSIOOOON");
         }
+		
 
         if (!isMasterPigeon)
 		{
@@ -340,8 +342,11 @@ public class PigeonUnit : MonoBehaviour
 
 	private void ExplodeNicely()
 	{
-        // TODO Explode
-     
+		if (Input.GetKeyDown(KeyCode.Return))
+		{
+			Instantiate(bloodyExplosion, pigeonPosition.transform.position, Quaternion.identity);
+		}
+
 		Destroy(gameObject);
 	}
 
