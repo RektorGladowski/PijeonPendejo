@@ -313,10 +313,7 @@ public class PigeonUnit : MonoBehaviour
 
 	private void ExplodeNicely()
 	{
-		if (Input.GetKeyDown(KeyCode.Return))
-		{
-			Instantiate(bloodyExplosion, pigeonPosition.transform.position, Quaternion.identity);
-		}
+		Instantiate(bloodyExplosion, pigeonPosition.transform.position, Quaternion.identity);
 
 		Destroy(gameObject);
 	}
