@@ -113,7 +113,7 @@ public class PigeonUnit : MonoBehaviour
 				{
 					isFollowingMaster = true;
 					gameObject.tag = "Pigeon";
-					pigeonManager.AvailablePigeonFollowers += 1;
+					PigeonManager.AvailablePigeonFollowers += 1;
 				}
 			}
 			else
@@ -314,6 +314,7 @@ public class PigeonUnit : MonoBehaviour
 			else
 			{
 				Debug.LogError("Player should lose now, fucking put something here");
+		
 				// TODO Stop the game and show game over screen
 			}
 		}
@@ -321,7 +322,7 @@ public class PigeonUnit : MonoBehaviour
 		{
 			if (isFollowingMaster)
 			{
-				pigeonManager.AvailablePigeonFollowers -= 1;
+				PigeonManager.AvailablePigeonFollowers -= 1;
 			}
 
 			ExplodeNicely();
@@ -330,13 +331,13 @@ public class PigeonUnit : MonoBehaviour
 
 	private bool FindNewMasterPigeon()
 	{
-		if (pigeonManager.AvailablePigeonFollowers == 0)
+		if (PigeonManager.AvailablePigeonFollowers == 0)
 		{
 			return false;
 		}
 
 		// Remove follower from counter since it is certain that we find new master pigeon
-		pigeonManager.AvailablePigeonFollowers -= 1;
+		PigeonManager.AvailablePigeonFollowers -= 1;
 
 		// Pick random follower as a new Master pigeon
 		PigeonUnit newMaster;
