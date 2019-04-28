@@ -6,20 +6,21 @@ public class PigeonShooting : MonoBehaviour
 {
     public List<GameObject> ShootableObjects;
     public Animator PigeonAnimator;
-    public float ShitInitialCooldown;
-    public float ShitCooldown;
     
     private bool shitReady;
     private Rigidbody2D pigeonRb;
     private static readonly int ShitCooledDown = Animator.StringToHash("ShitCooledDown");
+	private ShitUpgrade shitStats;
 
     private void Start()
     {
         pigeonRb = gameObject.GetComponentInParent<Rigidbody2D>();
-        StartCoroutine(CooldownShit(ShitInitialCooldown));
+
+		shitStats = Upgradeton.instance.GetShitStats();
+        StartCoroutine(CooldownShit(shitStats.shitInitialCooldown));
     }
 
-    void Update()
+    private void Update()
     {
         if (Input.GetButtonDown("Deploy Shit"))
         {
@@ -27,7 +28,7 @@ public class PigeonShooting : MonoBehaviour
             {
                 DeployShit();
                 shitReady = false;
-                StartCoroutine(CooldownShit(ShitCooldown));
+                StartCoroutine(CooldownShit(shitStats.shitCooldown));
             }
             else
             {
@@ -41,6 +42,7 @@ public class PigeonShooting : MonoBehaviour
     {
         GameObject deployedShit = Instantiate(GetRandomShit(), transform.position, transform.rotation);
         Rigidbody2D shitRb = deployedShit.GetComponent<Rigidbody2D>();
+
         shitRb.velocity = pigeonRb.velocity;
         shitRb.angularVelocity = pigeonRb.angularVelocity;
     }
