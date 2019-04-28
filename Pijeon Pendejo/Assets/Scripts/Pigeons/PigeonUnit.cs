@@ -21,12 +21,15 @@ public class PigeonUnit : MonoBehaviour
 
 	[Header("Special options")]
 	[Range(0f, 100f)] public float behaviourChangeChance = 5f;
+	public float alignmentWeight = 1f;
+	public float separationWeight = 1f;
+	public float cohesionWeight = 1f;
 
 	private PigeonManager pigeonManager;
 	private Rigidbody2D pigeonRb;
 
 	private bool isMasterPigeon = false;
-	public bool isFollowingMaster = false;
+	[HideInInspector] public bool isFollowingMaster = false;
 	private PigeonUnitCharacter characterTrait = PigeonUnitCharacter.GroupTraveler;
 
 	private Vector2 goalPosition = Vector2.zero;
@@ -87,9 +90,8 @@ public class PigeonUnit : MonoBehaviour
 	}
 
 	private void Update()
-	{
-		
-        //suicide button
+	{		
+        // Suicide button
         if (Input.GetKeyDown(KeyCode.Return))
         {
             //to jest to złe miejsce
@@ -163,6 +165,7 @@ public class PigeonUnit : MonoBehaviour
 		{
 			sum /= count;
 			Vector2 steer = sum - pigeonRb.velocity;
+			steer = steer.normalized;
 			return steer;
 		}
 
@@ -191,7 +194,9 @@ public class PigeonUnit : MonoBehaviour
 		if (count > 0)
 		{
 			sum /= count;
-			return Seek(sum);
+			sum = Seek(sum);
+			sum = sum.normalized;
+			return sum;
 		}
 
 		return Vector2.zero;
@@ -221,6 +226,7 @@ public class PigeonUnit : MonoBehaviour
 		{
 			sum /= count;
 			sum *= -1;
+			sum = sum.normalized;
 			return sum;
 		}
 
@@ -235,6 +241,13 @@ public class PigeonUnit : MonoBehaviour
 			{
 				switch (characterTrait)
 				{
+					case PigeonUnitCharacter.GroupTraveler:
+						{
+							currentForce = Seek(GetMasterPigeonPosition) + (Align() * alignmentWeight) + (Cohesion() * cohesionWeight) + (Separation() * separationWeight);
+							currentForce = currentForce.normalized;
+							break;
+						}
+
 					case PigeonUnitCharacter.Individualist:
 						{
 							currentForce = new Vector2(Random.Range(0.01f, 1f), Random.Range(0.01f, 1f));
@@ -252,13 +265,6 @@ public class PigeonUnit : MonoBehaviour
 					case PigeonUnitCharacter.Cohesive:
 						{
 							currentForce = Seek(GetMasterPigeonPosition) + Cohesion();
-							currentForce = currentForce.normalized;
-							break;
-						}
-
-					case PigeonUnitCharacter.GroupTraveler:
-						{
-							currentForce = Seek(GetMasterPigeonPosition) + Align() + Cohesion() + Separation();
 							currentForce = currentForce.normalized;
 							break;
 						}
