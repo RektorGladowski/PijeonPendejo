@@ -143,7 +143,7 @@ MonoBehaviour:
   neighbourhoodDistance: 1.5
   rotationSpeed: 2
   behaviourChangeChance: 5
-  alignmentWeight: 0.2
+  alignmentWeight: 0.01
   separationWeight: 4
   cohesionWeight: 1
   isFollowingMaster: 0
@@ -173,6 +173,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2652627820023021760}
     m_Modifications:
+    - target: {fileID: 3046953901115844910, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_Name
+      value: Pigeon
+      objectReference: {fileID: 0}
     - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -242,11 +247,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.45936
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046953901115844910, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
-        type: 3}
-      propertyPath: m_Name
-      value: Pigeon
       objectReference: {fileID: 0}
     - target: {fileID: 3046953900076193699, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
         type: 3}

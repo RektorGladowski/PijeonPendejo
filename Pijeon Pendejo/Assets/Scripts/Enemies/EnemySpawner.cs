@@ -75,12 +75,12 @@ public class EnemySpawner : MonoBehaviour
         {
             return;
         }
-        else if (rand <= 75 && Kraken)
+        else if (rand <= 65 && Kraken)
         {
             spawnedObject = Instantiate(Kraken);
             spawnedObject.transform.Translate(new Vector3(lastSpawn + Distance, 0, 0));
         }
-        else if (rand <= 80 && Narwal)
+        else if (rand <= 75 && Narwal)
         {
             spawnedObject = Instantiate(Narwal);
             spawnedObject.transform.Translate(new Vector3(lastSpawn + Distance, 0, 0));
