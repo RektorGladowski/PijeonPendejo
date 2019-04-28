@@ -43,4 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c71105ad8e9ee42a30f17996ee7ed6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialPlayerPigeons: 20
+  initialPlayerPigeons: 0

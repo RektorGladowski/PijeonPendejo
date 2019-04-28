@@ -24,6 +24,6 @@ public class StatsController : MonoBehaviour
         string currentTier = Upgradeton.instance.GetCurrentUpgradeTier(TypeOfUpgrade);
         currentTier = currentTier.Equals(Upgradeton.instance.maxUpgradeLevelText) ? "MAX" : currentTier;
         StatLevelText.SetText(currentTier);
-        PriceText.SetText(Upgradeton.instance.GetUpgradeCostString(TypeOfUpgrade));
+        PriceText.SetText(currentTier.Equals("MAX") ? "" : Upgradeton.instance.GetUpgradeCostString(TypeOfUpgrade));
     }
 }
