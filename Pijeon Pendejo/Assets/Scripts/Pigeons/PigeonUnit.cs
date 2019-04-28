@@ -7,6 +7,7 @@ public class PigeonUnit : MonoBehaviour
 	private static GameObject MasterPigeon;
     
 	public static Vector3 GetMasterPigeonPosition { get { return MasterPigeon.transform.position; } }
+	public static Transform GetMasterPigeonTransform { get { return MasterPigeon.transform; } }
 
     public GameObject bloodyExplosion;
     public GameObject pigeonPosition;
@@ -51,6 +52,8 @@ public class PigeonUnit : MonoBehaviour
 		{
 			gameObject.AddComponent<MasterPigeonMovement>();
 		}
+
+		pigeonManager.MasterPigeonWasChosen();
 	}
 
 	public void SetPigeonManagerRef(PigeonManager pmRef)

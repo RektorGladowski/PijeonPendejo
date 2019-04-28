@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class PigeonManager : MonoBehaviour
 {
 	[HideInInspector]
 	public List<PigeonUnit> pigeonUnits = new List<PigeonUnit>();
+	
 	public int AvailablePigeonFollowers { get; set; }
+	
 
 	public GameObject pigeonUnitPrefab;
 
@@ -15,11 +18,13 @@ public class PigeonManager : MonoBehaviour
 
 	private float timer = 0f;
 
+	private CinemachineVirtualCamera cinemachineCamera;
 	private TeamUpgrade teamStats;
 	
 
 	private void Start()
     {
+		cinemachineCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CinemachineVirtualCamera>();
 		RestartTheGame();
     }
 
@@ -83,5 +88,10 @@ public class PigeonManager : MonoBehaviour
 		{
 			pigeonUnits.Remove(unit);
 		}
+	}
+
+	public void MasterPigeonWasChosen()
+	{
+		cinemachineCamera.Follow = PigeonUnit.GetMasterPigeonTransform;
 	}
 }
