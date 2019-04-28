@@ -18,7 +18,7 @@ public class Blimp : Enemy
     {
         if (pigeonsInSight)
         {
-            vectorTowardsPigeon = -(PigeonUnit.GetMasterPigeonPosition() - Gun.transform.position).normalized;
+            vectorTowardsPigeon = -(PigeonUnit.GetMasterPigeonPosition - Gun.transform.position).normalized;
             Gun.transform.up = vectorTowardsPigeon;
             if(shootingAllowed)
             {

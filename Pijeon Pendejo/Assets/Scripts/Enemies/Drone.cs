@@ -2,29 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Eagle : Enemy
+[RequireComponent(typeof(AudioSource))]
+
+public class Drone : Enemy
 {
     public float FlightSpeed = 25;
+    public float AttackForce = 50;
     public List<Transform> PatrollingPoints;
 
     private Transform currentDestination;
     private int currentDestinationIndex;
 
-    private Animator animator;
-
     private void Start()
     {
-        animator = GetComponent<Animator>();
-
         currentDestination = PatrollingPoints[0];
         currentDestinationIndex = 0;
 
         rb.AddForce((currentDestination.position - transform.position) * FlightSpeed);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Pigeon") || collision.gameObject.CompareTag("MainPigeon"))
+        {
+            StartCoroutine(Attack(collision.gameObject, 0.5f));
+        }
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("EaglePatrollingPoint"))
+        if (collision.gameObject.CompareTag("PatrollingPoint"))
         {
             if (currentDestinationIndex + 1 != PatrollingPoints.Count)
             {
@@ -46,5 +53,19 @@ public class Eagle : Enemy
             if (Collider)
                 Collider.enabled = false;
         }
+    }
+
+    private IEnumerator Attack(GameObject objectToAttack, float time)
+    {
+        rb.velocity = new Vector2(0, 0);
+
+        yield return new WaitForSeconds(time);
+        if (objectToAttack)
+        {
+            transform.Rotate(new Vector3(0, 0, Vector3.SignedAngle(transform.position, objectToAttack.transform.position, new Vector3(0, 0, 1))), Space.World);
+            rb.AddForce((objectToAttack.transform.position - transform.position) * AttackForce);
+        }
+
+        Debug.Log("Drone attacking");
     }
 }

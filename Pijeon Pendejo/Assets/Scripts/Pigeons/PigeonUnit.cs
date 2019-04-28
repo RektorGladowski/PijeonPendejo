@@ -4,93 +4,93 @@ using UnityEngine;
 
 public class PigeonUnit : MonoBehaviour
 {
-	private static GameObject MasterPigeon;
-    
-	public static Vector3 GetMasterPigeonPosition { get { return MasterPigeon.transform.position; } }
-	public static Transform GetMasterPigeonTransform { get { return MasterPigeon.transform; } }
+    private static GameObject MasterPigeon;
+
+    public static Vector3 GetMasterPigeonPosition { get { return MasterPigeon.transform.position; } }
+    public static Transform GetMasterPigeonTransform { get { return MasterPigeon.transform; } }
 
     public GameObject bloodyExplosion;
     public GameObject pigeonPosition;
 
-	[Header("Follower Stats")]
-	public float initialAttractionDistance = 15f;
-	public float neighbourhoodDistance = 25f;
-	private float followForce = 50f;
-	private float maxFollowVelocity = 14f;
-	public float rotationSpeed = 90f;
+    [Header("Follower Stats")]
+    public float initialAttractionDistance = 15f;
+    public float neighbourhoodDistance = 25f;
+    private float followForce = 50f;
+    private float maxFollowVelocity = 14f;
+    public float rotationSpeed = 90f;
 
-	[Header("Special options")]
-	public LayerMask pigeonSearchMask;
-	public float newMasterSearchCircle = 3f;
-	[Range(0f, 100f)] public float behaviourChangeChance = 5f;
+    [Header("Special options")]
+    public LayerMask pigeonSearchMask;
+    public float newMasterSearchCircle = 3f;
+    [Range(0f, 100f)] public float behaviourChangeChance = 5f;
 
-	private PigeonManager pigeonManager;
-	private Rigidbody2D pigeonRb;
+    private PigeonManager pigeonManager;
+    private Rigidbody2D pigeonRb;
 
-	private bool isMasterPigeon = false;
-	public bool isFollowingMaster = false;
-	private PigeonUnitCharacter characterTrait = PigeonUnitCharacter.GroupTraveler;
+    private bool isMasterPigeon = false;
+    public bool isFollowingMaster = false;
+    private PigeonUnitCharacter characterTrait = PigeonUnitCharacter.GroupTraveler;
 
-	private Vector2 goalPosition = Vector2.zero;
-	private Vector2 currentForce = Vector2.zero;
+    private Vector2 goalPosition = Vector2.zero;
+    private Vector2 currentForce = Vector2.zero;
 
-	private SpeedUpgrade speedStats;
-	private Vector3 initialVelocity;
+    private SpeedUpgrade speedStats;
+    private Vector3 initialVelocity;
 
-	#region Setting stuff
-	public static void SetAsMasterPigeon(GameObject go)
-	{
-		MasterPigeon = go;
-		MasterPigeon.GetComponent<PigeonUnit>().SetThisInstanceAsMasterPigeon();
-	}
+    #region Setting stuff
+    public static void SetAsMasterPigeon(GameObject go)
+    {
+        MasterPigeon = go;
+        MasterPigeon.GetComponent<PigeonUnit>().SetThisInstanceAsMasterPigeon();
+    }
 
-	public void SetThisInstanceAsMasterPigeon()
-	{
-		isMasterPigeon = true;
-		
-		if (gameObject.GetComponent<MasterPigeonMovement>() == null)
-		{
-			gameObject.AddComponent<MasterPigeonMovement>();
-		}
+    public void SetThisInstanceAsMasterPigeon()
+    {
+        isMasterPigeon = true;
 
-		pigeonManager.MasterPigeonWasChosen();
-	}
+        if (gameObject.GetComponent<MasterPigeonMovement>() == null)
+        {
+            gameObject.AddComponent<MasterPigeonMovement>();
+        }
 
-	public void SetPigeonManagerRef(PigeonManager pmRef)
-	{
-		pigeonManager = pmRef;
-	}
+        pigeonManager.MasterPigeonWasChosen();
+    }
 
-	public void SetInitialPositionAndSpeed(Vector3 pos, Vector3 vel)
-	{
-		pigeonRb.position = pos;
+    public void SetPigeonManagerRef(PigeonManager pmRef)
+    {
+        pigeonManager = pmRef;
+    }
 
-		initialVelocity = vel;
-		pigeonRb.velocity = vel;
-	}
+    public void SetInitialPositionAndSpeed(Vector3 pos, Vector3 vel)
+    {
+        pigeonRb.position = pos;
 
-	public void SetCharacterTrait(PigeonUnitCharacter trait)
-	{
-		characterTrait = trait;
-	}
-	#endregion
+        initialVelocity = vel;
+        pigeonRb.velocity = vel;
+    }
 
-	public void SetStats()
-	{
-		pigeonRb = GetComponent<Rigidbody2D>();
-		speedStats = Upgradeton.instance.GetSpeedStats();
+    public void SetCharacterTrait(PigeonUnitCharacter trait)
+    {
+        characterTrait = trait;
+    }
+    #endregion
 
-		pigeonRb.mass = speedStats.followerStats.mass;
-		pigeonRb.drag = speedStats.followerStats.linearDrag;
-		pigeonRb.angularDrag = speedStats.followerStats.angularDrag;
+    public void SetStats()
+    {
+        pigeonRb = GetComponent<Rigidbody2D>();
+        speedStats = Upgradeton.instance.GetSpeedStats();
 
-		followForce = speedStats.followerStats.maxFollowForce;
-		maxFollowVelocity = speedStats.followerStats.maxFollowSpeed;
-	}
+        pigeonRb.mass = speedStats.followerStats.mass;
+        pigeonRb.drag = speedStats.followerStats.linearDrag;
+        pigeonRb.angularDrag = speedStats.followerStats.angularDrag;
 
-	private void Update()
-	{
-		
+        followForce = speedStats.followerStats.maxFollowForce;
+        maxFollowVelocity = speedStats.followerStats.maxFollowSpeed;
+    }
+
+    private void Update()
+    {
+
         //suicide button
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -98,219 +98,220 @@ public class PigeonUnit : MonoBehaviour
             Instantiate(bloodyExplosion, pigeonPosition.transform.position, Quaternion.identity);
             Debug.Log("FEEL IT YOU GOT IT EXPLOSIOOOON");
         }
-		
+
 
         if (!isMasterPigeon)
-		{
+        {
             if (!isFollowingMaster)
-			{
-				pigeonRb.velocity = initialVelocity;
-				if (Vector2.Distance(transform.position, MasterPigeon.transform.position) <= initialAttractionDistance)
-				{
-					isFollowingMaster = true;
-					pigeonManager.AvailablePigeonFollowers += 1;
-				}
-			}
-			else
-			{
-				Flock();
-				RotateBody();
-			}
-		}
-	}
+            {
+                pigeonRb.velocity = initialVelocity;
+                if (Vector2.Distance(transform.position, MasterPigeon.transform.position) <= initialAttractionDistance)
+                {
+                    isFollowingMaster = true;
+                    pigeonManager.AvailablePigeonFollowers += 1;
+                }
+            }
+            else
+            {
+                Flock();
+                RotateBody();
+            }
+        }
+    }
 
-	#region Flocking
-	private Vector2 Seek(Vector2 target)
-	{
-		return (target - (Vector2)transform.position);
-	}
+    #region Flocking
+    private Vector2 Seek(Vector2 target)
+    {
+        return (target - (Vector2)transform.position);
+    }
 
-	public Vector2 GetVelocity()
-	{
-		return pigeonRb.velocity;
-	}
+    public Vector2 GetVelocity()
+    {
+        return pigeonRb.velocity;
+    }
 
-	private void ApplyForce(Vector2 force)
-	{
-		Vector3 forceToApply = new Vector3(force.x, force.y, 0);
-		forceToApply = forceToApply.normalized;
-		forceToApply *= followForce;
+    private void ApplyForce(Vector2 force)
+    {
+        Vector3 forceToApply = new Vector3(force.x, force.y, 0);
+        forceToApply = forceToApply.normalized;
+        forceToApply *= followForce;
 
-		pigeonRb.AddForce(forceToApply);
-		pigeonRb.velocity = Vector2.ClampMagnitude(pigeonRb.velocity, maxFollowVelocity);
+        pigeonRb.AddForce(forceToApply);
+        pigeonRb.velocity = Vector2.ClampMagnitude(pigeonRb.velocity, maxFollowVelocity);
 
-		Debug.DrawRay(transform.position, force, Color.white);
-	}
+        Debug.DrawRay(transform.position, force, Color.white);
+    }
 
-	private Vector2 Align()
-	{
-		Vector2 sum = Vector2.zero;
-		int count = 0;
+    private Vector2 Align()
+    {
+        Vector2 sum = Vector2.zero;
+        int count = 0;
 
-		foreach (PigeonUnit pUnit in pigeonManager.pigeonUnits)
-		{
-			if (pUnit == this)
-			{
-				continue;
-			}
+        foreach (PigeonUnit pUnit in pigeonManager.pigeonUnits)
+        {
+            if (pUnit == this)
+            {
+                continue;
+            }
 
-			if (Vector2.Distance(transform.position, pUnit.transform.position) < neighbourhoodDistance)
-			{
-				sum += pUnit.GetVelocity();
-				count++;
-			}
-		}
+            if (Vector2.Distance(transform.position, pUnit.transform.position) < neighbourhoodDistance)
+            {
+                sum += pUnit.GetVelocity();
+                count++;
+            }
+        }
 
-		if (count > 0)
-		{
-			sum /= count;
-			Vector2 steer = sum - pigeonRb.velocity;
-			return steer;
-		}
+        if (count > 0)
+        {
+            sum /= count;
+            Vector2 steer = sum - pigeonRb.velocity;
+            return steer;
+        }
 
-		return Vector2.zero;
-	}
+        return Vector2.zero;
+    }
 
-	private Vector2 Cohesion()
-	{
-		Vector2 sum = Vector2.zero;
-		int count = 0;
+    private Vector2 Cohesion()
+    {
+        Vector2 sum = Vector2.zero;
+        int count = 0;
 
-		foreach (PigeonUnit pUnit in pigeonManager.pigeonUnits)
-		{
-			if (pUnit == this)
-			{
-				continue;
-			}
+        foreach (PigeonUnit pUnit in pigeonManager.pigeonUnits)
+        {
+            if (pUnit == this)
+            {
+                continue;
+            }
 
-			if (Vector2.Distance(transform.position, pUnit.transform.position) < neighbourhoodDistance)
-			{
-				sum += (Vector2)pUnit.transform.position;
-				count++;
-			}
-		}
+            if (Vector2.Distance(transform.position, pUnit.transform.position) < neighbourhoodDistance)
+            {
+                sum += (Vector2)pUnit.transform.position;
+                count++;
+            }
+        }
 
-		if (count > 0)
-		{
-			sum /= count;
-			return Seek(sum);
-		}
+        if (count > 0)
+        {
+            sum /= count;
+            return Seek(sum);
+        }
 
-		return Vector2.zero;
-	}
+        return Vector2.zero;
+    }
 
-	private void Flock()
-	{
-		if (isFollowingMaster)
-		{
-			if (Random.Range(0f, (100f / behaviourChangeChance)) >= 1f)
-			{
-				switch (characterTrait)
-				{
-					case PigeonUnitCharacter.Individualist:
-						{
-							currentForce = new Vector2(Random.Range(0.01f, 1f), Random.Range(0.01f, 1f));
-							currentForce = currentForce.normalized;
-							break;
-						}
+    private void Flock()
+    {
+        if (isFollowingMaster)
+        {
+            if (Random.Range(0f, (100f / behaviourChangeChance)) >= 1f)
+            {
+                switch (characterTrait)
+                {
+                    case PigeonUnitCharacter.Individualist:
+                        {
+                            currentForce = new Vector2(Random.Range(0.01f, 1f), Random.Range(0.01f, 1f));
+                            currentForce = currentForce.normalized;
+                            break;
+                        }
 
-					case PigeonUnitCharacter.Aligned:
-						{
-							currentForce = Seek(GetMasterPigeonPosition) + Align();
-							currentForce = currentForce.normalized;
-							break;
-						}
+                    case PigeonUnitCharacter.Aligned:
+                        {
+                            currentForce = Seek(GetMasterPigeonPosition) + Align();
+                            currentForce = currentForce.normalized;
+                            break;
+                        }
 
-					case PigeonUnitCharacter.Cohesive:
-						{
-							currentForce = Seek(GetMasterPigeonPosition) + Cohesion();
-							currentForce = currentForce.normalized;
-							break;
-						}
+                    case PigeonUnitCharacter.Cohesive:
+                        {
+                            currentForce = Seek(GetMasterPigeonPosition) + Cohesion();
+                            currentForce = currentForce.normalized;
+                            break;
+                        }
 
-					case PigeonUnitCharacter.GroupTraveler:
-						{
-							currentForce = Seek(GetMasterPigeonPosition) + Align() + Cohesion();
-							currentForce = currentForce.normalized;
-							break;
-						}
-				}
-			}
-			else
-			{
-				currentForce = Seek(GetMasterPigeonPosition);
-				currentForce = currentForce.normalized;
-			}
+                    case PigeonUnitCharacter.GroupTraveler:
+                        {
+                            currentForce = Seek(GetMasterPigeonPosition) + Align() + Cohesion();
+                            currentForce = currentForce.normalized;
+                            break;
+                        }
+                }
+            }
+            else
+            {
+                currentForce = Seek(GetMasterPigeonPosition);
+                currentForce = currentForce.normalized;
+            }
 
-			ApplyForce(currentForce);		
-		}
-	}
+            ApplyForce(currentForce);
+        }
+    }
 
-	private void RotateBody()
-	{
-		Quaternion targetQ = MasterPigeon.transform.rotation;
-		transform.rotation = Quaternion.Slerp(transform.rotation, targetQ, rotationSpeed * Time.deltaTime);
-	}
-	#endregion
+    private void RotateBody()
+    {
+        Quaternion targetQ = MasterPigeon.transform.rotation;
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetQ, rotationSpeed * Time.deltaTime);
+    }
+    #endregion
 
-	#region Please commit not existing
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (collision.gameObject.CompareTag("Enemy"))
-		{
-			Debug.Log("Pigeon collided with enemy");
-			PrepareToDie();
-		}
-	}
+    #region Please commit not existing
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Pigeon collided with enemy");
+            PrepareToDie();
+        }
+    }
 
-	private void PrepareToDie()
-	{
-		pigeonManager.RemovePigeonUnit(this);
+    private void PrepareToDie()
+    {
+        pigeonManager.RemovePigeonUnit(this);
 
-		if (isMasterPigeon)
-		{
-			if (FindNewMasterPigeon())
-			{
-				ExplodeNicely();
-			}
-			else
-			{
-				Debug.LogWarning("Player should lose now");
-				// TODO Stop the game and show game over screen
-			}
-		}
-		else
-		{
-			if (isFollowingMaster)
-			{
-				pigeonManager.AvailablePigeonFollowers -= 1;
-			}
+        if (isMasterPigeon)
+        {
+            if (FindNewMasterPigeon())
+            {
+                ExplodeNicely();
+            }
+            else
+            {
+                Debug.LogWarning("Player should lose now");
+                // TODO Stop the game and show game over screen
+            }
+        }
+        else
+        {
+            if (isFollowingMaster)
+            {
+                pigeonManager.AvailablePigeonFollowers -= 1;
+            }
 
-			ExplodeNicely();
-		}		
-	}
+            ExplodeNicely();
+        }
+    }
 
-	private bool FindNewMasterPigeon()
-	{
-		if (pigeonManager.AvailablePigeonFollowers == 0)
-		{
-			return false;
-		}
+    private bool FindNewMasterPigeon()
+    {
+        if (pigeonManager.AvailablePigeonFollowers == 0)
+        {
+            return false;
+        }
 
-		// Remove follower from counter since it is certain that we find new master pigeon
-		pigeonManager.AvailablePigeonFollowers -= 1;
+        // Remove follower from counter since it is certain that we find new master pigeon
+        pigeonManager.AvailablePigeonFollowers -= 1;
 
-		// Quick search algorithm
-		// Pick random follower as a new Master pigeon
-		PigeonUnit newMaster;
+        // Quick search algorithm
+        // Pick random follower as a new Master pigeon
+        PigeonUnit newMaster;
 
-		do {
-			newMaster = pigeonManager.pigeonUnits[Random.Range(0, pigeonManager.pigeonUnits.Count)];
-		} while (newMaster == this);
+        do
+        {
+            newMaster = pigeonManager.pigeonUnits[Random.Range(0, pigeonManager.pigeonUnits.Count)];
+        } while (newMaster == this);
 
-		SetAsMasterPigeon(newMaster.gameObject);
+        SetAsMasterPigeon(newMaster.gameObject);
 
-		/*
+        /*
 		// Search algorithm
 		Collider2D[] nearbyPigeons;
 		List<GameObject> nearbyFollowers = new List<GameObject>();
@@ -337,30 +338,30 @@ public class PigeonUnit : MonoBehaviour
 		// Pick random follower as a new Master pigeon
 		SetAsMasterPigeon(nearbyFollowers[Random.Range(0, nearbyFollowers.Count)]);
 		*/
-		return true;
-	}
+        return true;
+    }
 
-	private void ExplodeNicely()
-	{
-		if (Input.GetKeyDown(KeyCode.Return))
-		{
-			Instantiate(bloodyExplosion, pigeonPosition.transform.position, Quaternion.identity);
-		}
+    private void ExplodeNicely()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Instantiate(bloodyExplosion, pigeonPosition.transform.position, Quaternion.identity);
+        }
 
-		Destroy(gameObject);
-	}
+        Destroy(gameObject);
+    }
 
-	public void ForceKillPigeon()
-	{
-		ExplodeNicely();
-	}
-	#endregion
+    public void ForceKillPigeon()
+    {
+        ExplodeNicely();
+    }
+    #endregion
 }
 
 public enum PigeonUnitCharacter
 {
-	Individualist,
-	Aligned,
-	Cohesive,
-	GroupTraveler, 
+    Individualist,
+    Aligned,
+    Cohesive,
+    GroupTraveler,
 }

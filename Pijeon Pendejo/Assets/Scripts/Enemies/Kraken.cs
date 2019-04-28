@@ -14,6 +14,15 @@ public class Kraken : Enemy
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Pigeon") || collision.gameObject.CompareTag("MainPigeon"))
+        {
+            if (Collider)
+                Collider.enabled = false;
+        }
+    }
+
     private void Attack(float time)
     {
         transform.DOMove(new Vector3(transform.position.x, 0, -3), time);
