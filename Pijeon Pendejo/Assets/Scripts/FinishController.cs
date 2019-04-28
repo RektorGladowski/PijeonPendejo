@@ -19,7 +19,8 @@ public class FinishController : MonoBehaviour
 
     private IEnumerator SetPijeonPendejoActive()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
         PijeonPendejo.SetActive(true);
+        GameManager.GameEnded = true;
     }
 }

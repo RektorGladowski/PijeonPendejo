@@ -11,8 +11,8 @@ public class GameManager : MonoBehaviour
     public PigeonManager pigeonManager;
 
     public static bool GameStarted; //Turns false after first space press
+    public static bool GameEnded;
 
-    // Update is called once per frame
     void Update()
     {
         if(!GameStarted && Input.GetButtonDown("Pigeon Thrust"))
@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
             EnemySpawner.SetActive(true);
             pigeonManager.RestartTheGame(PigeonAtStart.transform);
         }
+        else if(GameEnded && Input.GetButtonDown("Pigeon Thrust"))
+        {
+            pigeonManager.RestartTheGame(PigeonAtStart.transform);
+        }
     }
-
 }
