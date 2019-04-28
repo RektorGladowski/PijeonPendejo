@@ -91,17 +91,17 @@ MonoBehaviour:
   TeamUpgrades:
   - upgradeTier: 1
     upgradeCost: 5
-    numberOfStarterFollowers: 20
+    numberOfStarterFollowers: 1
   - upgradeTier: 2
     upgradeCost: 9
-    numberOfStarterFollowers: 2
+    numberOfStarterFollowers: 3
   - upgradeTier: 3
     upgradeCost: 14
     numberOfStarterFollowers: 3
   - upgradeTier: 4
     upgradeCost: 21
-    numberOfStarterFollowers: 4
+    numberOfStarterFollowers: 6
   - upgradeTier: 5
     upgradeCost: 32
-    numberOfStarterFollowers: 5
+    numberOfStarterFollowers: 9
   maxUpgradeLevelText: Max Upgrade level

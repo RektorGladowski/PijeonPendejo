@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PigeonUnit : MonoBehaviour
 {
-	private static GameObject MasterPigeon;
+	public static GameObject MasterPigeon;
     
 	public static Vector3 GetMasterPigeonPosition { get { return MasterPigeon.transform.position; } }
 	public static Transform GetMasterPigeonTransform { get { return MasterPigeon.transform; } }

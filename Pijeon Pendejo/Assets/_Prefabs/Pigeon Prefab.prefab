@@ -48,6 +48,7 @@ MonoBehaviour:
   - {fileID: 5427652328423454463, guid: 74cc907bfeac3754cacc3c48fa372793, type: 3}
   - {fileID: 5427652328423454463, guid: e8ed2085647283e46acb5fa26fcc2529, type: 3}
   PigeonAnimator: {fileID: 6908887450819375143}
+  MaxShitDelay: 1.5
 --- !u!1 &2652627820023021765
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +143,7 @@ MonoBehaviour:
   neighbourhoodDistance: 1.5
   rotationSpeed: 2
   behaviourChangeChance: 5
-  alignmentWeight: 0.2
+  alignmentWeight: 0.01
   separationWeight: 4
   cohesionWeight: 1
   isFollowingMaster: 0
