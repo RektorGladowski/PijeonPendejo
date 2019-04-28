@@ -81,7 +81,14 @@ MonoBehaviour:
   Blimp: {fileID: 466612338389049204, guid: cfe41a5708c31e34692d1bb5430fa2f0, type: 3}
   Kraken: {fileID: 196525257375315100, guid: 48b95daf0771c0948b43b2b602a5c81a, type: 3}
   Narwal: {fileID: 2164911495312018105, guid: 1dcd1e180a0654e4e8d42d4d54f3ab40, type: 3}
-  Ship: {fileID: 0}
+  Buildings:
+  - {fileID: 7640620224119559297, guid: be054cee7a5ce974dbee2b695e8da945, type: 3}
+  - {fileID: 8459910100328424019, guid: 12001ce6add93054583a1693338e0933, type: 3}
+  - {fileID: 7323149984583130722, guid: 1d4cf4e6f8439f84292ae9ae731301ec, type: 3}
+  - {fileID: 3033223449060467118, guid: eb275bdc8600e4f4094d8d3f171acf66, type: 3}
+  - {fileID: 2435380970714175269, guid: 5d715039c81e3c545a42abc5947b4b79, type: 3}
+  - {fileID: 5512450505372286196, guid: c124a267501b46f45ad6f61a03bfc80b, type: 3}
+  - {fileID: 2310359705443435161, guid: c97d256d7bd490945bf48cb9d91e729c, type: 3}
 --- !u!1 &8482384848309150521
 GameObject:
   m_ObjectHideFlags: 0
