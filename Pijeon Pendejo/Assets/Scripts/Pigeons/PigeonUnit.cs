@@ -20,8 +20,6 @@ public class PigeonUnit : MonoBehaviour
 	public float rotationSpeed = 90f;
 
 	[Header("Special options")]
-	public LayerMask pigeonSearchMask;
-	public float newMasterSearchCircle = 3f;
 	[Range(0f, 100f)] public float behaviourChangeChance = 5f;
 
 	private PigeonManager pigeonManager;
@@ -300,7 +298,6 @@ public class PigeonUnit : MonoBehaviour
 		// Remove follower from counter since it is certain that we find new master pigeon
 		pigeonManager.AvailablePigeonFollowers -= 1;
 
-		// Quick search algorithm
 		// Pick random follower as a new Master pigeon
 		PigeonUnit newMaster;
 
@@ -310,33 +307,7 @@ public class PigeonUnit : MonoBehaviour
 
 		SetAsMasterPigeon(newMaster.gameObject);
 
-		/*
-		// Search algorithm
-		Collider2D[] nearbyPigeons;
-		List<GameObject> nearbyFollowers = new List<GameObject>();
-
-		for (int i = 1; ; i++) // Try to find the smallest circle with any followers inside it
-		{
-			nearbyFollowers.Clear();
-			nearbyPigeons = Physics2D.OverlapCircleAll(transform.position, i * newMasterSearchCircle, pigeonSearchMask);
-			
-			foreach (Collider2D pCollider in nearbyPigeons) // Collect all followers
-			{
-				if (pCollider.gameObject.GetComponent<PigeonUnit>().isFollowingMaster)
-				{
-					nearbyFollowers.Add(pCollider.gameObject);
-				}
-			}
-
-			if (nearbyFollowers.Count > 0)
-			{
-				break;
-			}
-		}
-
-		// Pick random follower as a new Master pigeon
-		SetAsMasterPigeon(nearbyFollowers[Random.Range(0, nearbyFollowers.Count)]);
-		*/
+	
 		return true;
 	}
 
