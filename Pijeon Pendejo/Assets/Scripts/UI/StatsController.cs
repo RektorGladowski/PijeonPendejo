@@ -11,13 +11,19 @@ public class StatsController : MonoBehaviour
     public TextMeshProUGUI PriceText;
     void Start()
     {
-        StatLevelText.SetText(Upgradeton.instance.GetCurrentUpgradeTier(TypeOfUpgrade));
-        PriceText.SetText(Upgradeton.instance.GetUpgradeCostString(TypeOfUpgrade));
+        AssignTextValues();
     }
 
     public void Refresh()
     {
-        StatLevelText.SetText(Upgradeton.instance.GetCurrentUpgradeTier(TypeOfUpgrade));
+        AssignTextValues();
+    }
+
+    private void AssignTextValues()
+    {
+        string currentTier = Upgradeton.instance.GetCurrentUpgradeTier(TypeOfUpgrade);
+        currentTier = currentTier.Equals(Upgradeton.instance.maxUpgradeLevelText) ? "MAX" : currentTier;
+        StatLevelText.SetText(currentTier);
         PriceText.SetText(Upgradeton.instance.GetUpgradeCostString(TypeOfUpgrade));
     }
 }
