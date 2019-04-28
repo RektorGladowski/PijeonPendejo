@@ -878,6 +878,16 @@ PrefabInstance:
       propertyPath: InitialModule.startSize.scalar
       value: 1.07
       objectReference: {fileID: 0}
+    - target: {fileID: 4509881529364029313, guid: 794d4c7f979696a44a5f9da4c00e8310,
+        type: 3}
+      propertyPath: m_SortingFudge
+      value: 5.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 4509881529364029313, guid: 794d4c7f979696a44a5f9da4c00e8310,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4509881529364063777, guid: 794d4c7f979696a44a5f9da4c00e8310,
         type: 3}
       propertyPath: lengthInSec

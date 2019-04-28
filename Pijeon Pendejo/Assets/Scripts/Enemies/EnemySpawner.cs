@@ -85,7 +85,7 @@ public class EnemySpawner : MonoBehaviour
             spawnedObject = Instantiate(Narwal);
             spawnedObject.transform.Translate(new Vector3(lastSpawn + Distance, 0, 0));
         }
-        else if (Buildings.Count > 0)
+        else 
         {
             spawnedObject = Instantiate(Buildings[Random.Range(0, Buildings.Count - 1)]);
             spawnedObject.transform.Translate(new Vector3(lastSpawn + Distance, 0, 0));
