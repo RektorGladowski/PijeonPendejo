@@ -66,7 +66,7 @@ public class PigeonManager : MonoBehaviour
 			p.SetStats();
 			p.SetPigeonManagerRef(this);
 			p.SetInitialPositionAndSpeed(transform.position, new Vector3(initialSpeed, 0f, 0f));
-			p.SetCharacterTrait((PigeonUnitCharacter)Random.Range(0, 4));
+			p.SetCharacterTrait((PigeonUnitCharacter)Random.Range(0, 3));
 
 			pigeonUnits.Add(p);
 		}		

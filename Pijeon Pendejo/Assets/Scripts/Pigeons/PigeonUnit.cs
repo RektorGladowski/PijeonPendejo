@@ -327,8 +327,8 @@ public class PigeonUnit : MonoBehaviour
 
 public enum PigeonUnitCharacter
 {
-	Individualist,
 	Aligned,
 	Cohesive,
-	GroupTraveler, 
+	GroupTraveler,
+	Individualist,
 }
