@@ -6,6 +6,8 @@ public class PigeonShooting : MonoBehaviour
 {
     public List<GameObject> ShootableObjects;
     public Animator PigeonAnimator;
+
+    public float MaxShitDelay;
     
     private bool shitReady;
     private Rigidbody2D pigeonRb;
@@ -26,7 +28,7 @@ public class PigeonShooting : MonoBehaviour
         {
             if (shitReady)
             {
-                DeployShit();
+                StartCoroutine(DeployShit(Random.Range(0.0f, MaxShitDelay)));
                 shitReady = false;
                 StartCoroutine(CooldownShit(shitStats.shitCooldown));
             }
@@ -38,8 +40,9 @@ public class PigeonShooting : MonoBehaviour
         }
     }
 
-    private void DeployShit()
+    private IEnumerator DeployShit(float delay)
     {
+        yield return new WaitForSeconds(delay);
         GameObject deployedShit = Instantiate(GetRandomShit(), transform.position, transform.rotation);
 		Vector3 localScale = deployedShit.transform.localScale;
 		deployedShit.transform.localScale = localScale * shitStats.shitSizeMultiplier;
