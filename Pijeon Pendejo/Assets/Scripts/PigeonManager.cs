@@ -24,8 +24,8 @@ public class PigeonManager : MonoBehaviour
 
 	public float initialNonFollowerLeftSideSpeed = 20f;
 	public float initialNonFollowerRightSideSpeed = 3f;
-	public float minSpawnTime = 1f;
-	public float maxSpawnTime = 5f;
+	public float minSpawnTime = 5f;
+	public float maxSpawnTime = 10f;
 	
 	private CinemachineVirtualCamera cinemachineCamera;
 	private TeamUpgrade teamStats;
