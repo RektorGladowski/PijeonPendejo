@@ -29,30 +29,37 @@ public class cloudMovement : MonoBehaviour
                 break;
 
             case 3:
-                cloud1.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), 0);
-                cloud2.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), 0);
-                cloud3.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), 0);
+                cloud1.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), Random.Range(-1, 5));
+                cloud2.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), Random.Range(-1, 5));
+                cloud3.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), Random.Range(-1, 5));
                 break;
 
             case 4:
-                cloud1.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), 0);
-                cloud3.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), 0);
-                cloud5.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), 0);
+                cloud1.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), Random.Range(-1, 5));
+                cloud3.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), Random.Range(-1, 5));
+                cloud5.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), Random.Range(-1, 5));
                 break;
 
             case 5:
-                cloud2.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), 0);
-                cloud4.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), 0);
-                cloud5.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), 0);
+                cloud2.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), Random.Range(-1, 5));
+                cloud4.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), Random.Range(-1, 5));
+                cloud5.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), Random.Range(-1, 5));
                 break;
 
             case 6:
-                cloud1.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), 0);
-                cloud4.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), 0);
-                cloud6.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), 0);
+                cloud1.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), Random.Range(-1, 5));
+                cloud4.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), Random.Range(-1, 5));
+                cloud6.transform.localPosition = new Vector3(Random.Range(-randomX, randomX), Random.Range(-randomY, randomY), Random.Range(-1, 5));
                 break;
         }
-        
+
+        cloud1.GetComponent<Renderer>().sortingOrder = Random.Range(-1, 50);
+        cloud2.GetComponent<Renderer>().sortingOrder = Random.Range(-1, 50);
+        cloud3.GetComponent<Renderer>().sortingOrder = Random.Range(-1, 50);
+        cloud4.GetComponent<Renderer>().sortingOrder = Random.Range(-1, 50);
+        cloud5.GetComponent<Renderer>().sortingOrder = Random.Range(-1, 50);
+        cloud6.GetComponent<Renderer>().sortingOrder = Random.Range(-1, 50);
+
     }
 
     // Update is called once per frame
