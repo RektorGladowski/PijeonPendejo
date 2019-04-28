@@ -298,6 +298,17 @@ public class PigeonUnit : MonoBehaviour
 		// Remove follower from counter since it is certain that we find new master pigeon
 		pigeonManager.AvailablePigeonFollowers -= 1;
 
+		// Quick search algorithm
+		// Pick random follower as a new Master pigeon
+		PigeonUnit newMaster;
+
+		do {
+			newMaster = pigeonManager.pigeonUnits[Random.Range(0, pigeonManager.pigeonUnits.Count)];
+		} while (newMaster == this);
+
+		SetAsMasterPigeon(newMaster.gameObject);
+
+		/*
 		// Search algorithm
 		Collider2D[] nearbyPigeons;
 		List<GameObject> nearbyFollowers = new List<GameObject>();
@@ -323,6 +334,7 @@ public class PigeonUnit : MonoBehaviour
 
 		// Pick random follower as a new Master pigeon
 		SetAsMasterPigeon(nearbyFollowers[Random.Range(0, nearbyFollowers.Count)]);
+		*/
 		return true;
 	}
 
