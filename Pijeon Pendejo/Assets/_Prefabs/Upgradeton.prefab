@@ -91,7 +91,7 @@ MonoBehaviour:
   TeamUpgrades:
   - upgradeTier: 1
     upgradeCost: 5
-    numberOfStarterFollowers: 1
+    numberOfStarterFollowers: 0
   - upgradeTier: 2
     upgradeCost: 9
     numberOfStarterFollowers: 3
