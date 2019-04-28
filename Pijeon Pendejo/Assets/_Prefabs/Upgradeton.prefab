@@ -54,8 +54,10 @@ MonoBehaviour:
       linearDrag: 0.2
       angularDrag: 0
     followerStats:
-      mass: 2.5
+      minMass: 1.5
+      maxMass: 2.5
       maxFollowSpeed: 11
+      minFollowForce: 120
       maxFollowForce: 150
       minLinearDrag: 3
       maxLinearDrag: 6
