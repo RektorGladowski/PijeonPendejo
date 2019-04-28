@@ -41,6 +41,9 @@ public class PigeonShooting : MonoBehaviour
     private void DeployShit()
     {
         GameObject deployedShit = Instantiate(GetRandomShit(), transform.position, transform.rotation);
+		Vector3 localScale = deployedShit.transform.localScale;
+		deployedShit.transform.localScale = localScale * shitStats.shitSizeMultiplier;
+
         Rigidbody2D shitRb = deployedShit.GetComponent<Rigidbody2D>();
 
         shitRb.velocity = pigeonRb.velocity;
