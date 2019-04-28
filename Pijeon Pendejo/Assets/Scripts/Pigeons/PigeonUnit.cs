@@ -62,10 +62,8 @@ public class PigeonUnit : MonoBehaviour
 		pigeonManager = pmRef;
 	}
 
-	public void SetInitialPositionAndSpeed(Vector3 pos, Vector3 vel)
+	public void SetInitialSpeed(Vector3 vel)
 	{
-		pigeonRb.position = pos;
-
 		initialVelocity = vel;
 		pigeonRb.velocity = vel;
 	}
@@ -110,6 +108,7 @@ public class PigeonUnit : MonoBehaviour
 				if (Vector2.Distance(transform.position, MasterPigeon.transform.position) <= initialAttractionDistance)
 				{
 					isFollowingMaster = true;
+					gameObject.tag = "Pigeon";
 					pigeonManager.AvailablePigeonFollowers += 1;
 				}
 			}
