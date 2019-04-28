@@ -19,9 +19,13 @@ public class GameManager : MonoBehaviour
     public static bool GameEnded;
     public static int PigeonsReceived;
 
-    private void Start()
+    private void Awake()
     {
         Application.targetFrameRate = 60;
+    }
+
+    private void Start()
+    {
         GameStarted = false;
         GameEnded = false;
         PigeonsReceived = 0;
