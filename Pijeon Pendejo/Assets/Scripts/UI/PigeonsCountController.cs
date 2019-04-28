@@ -13,6 +13,8 @@ public class PigeonsCountController : MonoBehaviour
     }
     void Update()
     {
-        countText.SetText((PigeonManager.AvailablePigeonFollowers  + 1).ToString()); 
+        int count = PigeonManager.AvailablePigeonFollowers;
+        count = count > 0 ? count + 1 : 0;
+        countText.SetText(count.ToString()); 
     }
 }
