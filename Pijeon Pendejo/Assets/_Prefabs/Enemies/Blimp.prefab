@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11963f82a19ddf94aa4d510205b73cd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Collider: {fileID: 0}
   FireThreshold: 1
   ShootPower: 5
   Bullet: {fileID: 4409949812567713938, guid: cff3230be1b604942976f5b341682738, type: 3}
@@ -192,7 +193,6 @@ GameObject:
   m_Component:
   - component: {fileID: 466612340076023868}
   - component: {fileID: 466612340076023867}
-  - component: {fileID: 466612340076023866}
   - component: {fileID: 466612340076023865}
   m_Layer: 0
   m_Name: BlimpBody
@@ -263,82 +263,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!60 &466612340076023866
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 466612340076023869}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.05, y: 1.68}
-    newSize: {x: 4.05, y: 1.68}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.585, y: -0.45999998}
-      - {x: 0.79499996, y: -0.42}
-      - {x: 0.965, y: -0.35999998}
-      - {x: 1.2149999, y: -0.29999998}
-      - {x: 1.375, y: -0.24}
-      - {x: 1.5749999, y: -0.16}
-      - {x: 1.645, y: -0.26}
-      - {x: 1.735, y: -0.32}
-      - {x: 1.8449999, y: -0.32}
-      - {x: 1.915, y: -0.19}
-      - {x: 1.895, y: -0.04}
-      - {x: 2.0249999, y: 0.089999996}
-      - {x: 2.0249999, y: 0.19}
-      - {x: 2.0149999, y: 0.25}
-      - {x: 1.905, y: 0.34}
-      - {x: 1.915, y: 0.57}
-      - {x: 1.8549999, y: 0.65999997}
-      - {x: 1.6949999, y: 0.63}
-      - {x: 1.635, y: 0.58}
-      - {x: 1.535, y: 0.47}
-      - {x: 1.305, y: 0.57}
-      - {x: 1.135, y: 0.63}
-      - {x: 0.865, y: 0.71999997}
-      - {x: 0.755, y: 0.75}
-      - {x: 0.53499997, y: 0.79999995}
-      - {x: 0.415, y: 0.82}
-      - {x: 0.265, y: 0.84}
-      - {x: -0.645, y: 0.84}
-      - {x: -0.865, y: 0.81}
-      - {x: -1.225, y: 0.74}
-      - {x: -1.375, y: 0.69}
-      - {x: -1.625, y: 0.57}
-      - {x: -1.8249999, y: 0.41}
-      - {x: -1.915, y: 0.26}
-      - {x: -2.0149999, y: 0.26999998}
-      - {x: -2.0249999, y: 0.24}
-      - {x: -2.0249999, y: 0.12}
-      - {x: -1.905, y: 0.08}
-      - {x: -1.8549999, y: -0.03}
-      - {x: -1.7149999, y: -0.17999999}
-      - {x: -1.5749999, y: -0.26}
-      - {x: -1.345, y: -0.37}
-      - {x: -1.0749999, y: -0.45}
-      - {x: -0.805, y: -0.48999998}
-      - {x: -0.615, y: -0.51}
-      - {x: -0.615, y: -0.81}
-      - {x: -0.575, y: -0.84}
-      - {x: 0.175, y: -0.84}
-      - {x: 0.195, y: -0.81}
-      - {x: 0.265, y: -0.51}
-      - {x: 0.415, y: -0.48999998}
 --- !u!61 &466612340076023865
 BoxCollider2D:
   m_ObjectHideFlags: 0

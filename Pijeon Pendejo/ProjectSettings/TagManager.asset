@@ -9,6 +9,8 @@ TagManager:
   - PatrollingPoint
   - Pigeon
   - EaglePatrollingPoint
+  - FxTemporaire
+  - Death
   layers:
   - Default
   - TransparentFX

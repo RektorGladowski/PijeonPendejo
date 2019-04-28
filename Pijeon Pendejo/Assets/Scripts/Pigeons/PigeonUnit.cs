@@ -91,6 +91,7 @@ public class PigeonUnit : MonoBehaviour
 
 	private void Update()
 	{		
+		/*
         // Suicide button
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -98,13 +99,14 @@ public class PigeonUnit : MonoBehaviour
             Instantiate(bloodyExplosion, pigeonPosition.transform.position, Quaternion.identity);
             Debug.Log("FEEL IT YOU GOT IT EXPLOSIOOOON");
         }
-		
+		*/
 
         if (!isMasterPigeon)
 		{
             if (!isFollowingMaster)
 			{
 				pigeonRb.velocity = initialVelocity;
+
 				if (Vector2.Distance(transform.position, MasterPigeon.transform.position) <= initialAttractionDistance)
 				{
 					isFollowingMaster = true;
@@ -290,9 +292,8 @@ public class PigeonUnit : MonoBehaviour
 	#region Please commit not existing
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.CompareTag("Enemy"))
+		if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Death"))
 		{
-			Debug.Log("Pigeon collided with enemy");
 			PrepareToDie();
 		}
 	}
@@ -309,7 +310,7 @@ public class PigeonUnit : MonoBehaviour
 			}
 			else
 			{
-				Debug.LogWarning("Player should lose now");
+				Debug.LogError("Player should lose now, fucking put something here");
 				// TODO Stop the game and show game over screen
 			}
 		}
@@ -350,7 +351,6 @@ public class PigeonUnit : MonoBehaviour
 	private void ExplodeNicely()
 	{
 		Instantiate(bloodyExplosion, pigeonPosition.transform.position, Quaternion.identity);
-
 		Destroy(gameObject);
 	}
 

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using System.Collections;
 
 [RequireComponent(typeof(AudioSource))]
 public class Kraken : Enemy
@@ -25,8 +26,15 @@ public class Kraken : Enemy
 
     private void Attack(float time)
     {
-        transform.DOMove(new Vector3(transform.position.x, -0.5f, -3), time);
+        transform.DOMove(new Vector3(transform.position.x, -0.3f, -3), time);
+        StartCoroutine(HideKraken(time + 1));
 
         Debug.Log("Kraken attacking");
+    }
+
+    private IEnumerator HideKraken(float time)
+    {
+        yield return new WaitForSeconds(time);
+        transform.DOMove(new Vector3(transform.position.x, -8, -3), time);
     }
 }
