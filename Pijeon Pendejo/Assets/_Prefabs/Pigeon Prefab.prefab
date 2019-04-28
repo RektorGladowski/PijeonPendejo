@@ -136,12 +136,12 @@ MonoBehaviour:
   bloodyExplosion: {fileID: 1651407365505755140, guid: 55f1ec52675ad4b40bbe520485059524,
     type: 3}
   pigeonPosition: {fileID: 6908887450819375142}
-  initialAttractionDistance: 15
-  neighbourhoodDistance: 5
+  initialAttractionDistance: 9.89
+  neighbourhoodDistance: 1.5
   rotationSpeed: 90
-  behaviourChangeChance: 10
-  alignmentWeight: 1
-  separationWeight: 3
+  behaviourChangeChance: 5
+  alignmentWeight: 0.2
+  separationWeight: 4
   cohesionWeight: 1
   isFollowingMaster: 0
 --- !u!95 &1760963997

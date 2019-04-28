@@ -18,7 +18,7 @@ public class EnemySpawner : MonoBehaviour
     [Header("Ground prefabs")]
     public GameObject Kraken;
     public GameObject Narwal;
-    public GameObject Ship;
+    public List<GameObject> Buildings;
 
     private float lastSpawn = 0;
 
@@ -85,9 +85,9 @@ public class EnemySpawner : MonoBehaviour
             spawnedObject = Instantiate(Narwal);
             spawnedObject.transform.Translate(new Vector3(lastSpawn + Distance, 0, 0));
         }
-        else if (Ship)
+        else if (Buildings.Count > 0)
         {
-            spawnedObject = Instantiate(Ship);
+            spawnedObject = Instantiate(Buildings[Random.Range(0, Buildings.Count - 1)]);
             spawnedObject.transform.Translate(new Vector3(lastSpawn + Distance, 0, 0));
         }
 
