@@ -14,8 +14,8 @@ public class PigeonUnit : MonoBehaviour
 	[Header("Follower Stats")]
 	public float initialAttractionDistance = 15f;
 	public float neighbourhoodDistance = 25f;
-	public float followForce = 50f;
-	public float maxFollowVelocity = 14f;
+	private float followForce = 50f;
+	private float maxFollowVelocity = 14f;
 	public float rotationSpeed = 90f;
 
 	[Header("Special options")]
@@ -32,6 +32,9 @@ public class PigeonUnit : MonoBehaviour
 
 	private Vector2 goalPosition = Vector2.zero;
 	private Vector2 currentForce = Vector2.zero;
+
+	private SpeedUpgrade speedStats;
+	private Vector3 initialVelocity;
 
 	#region Setting stuff
 	public static void SetAsMasterPigeon(GameObject go)
@@ -58,6 +61,8 @@ public class PigeonUnit : MonoBehaviour
 	public void SetInitialPositionAndSpeed(Vector3 pos, Vector3 vel)
 	{
 		pigeonRb.position = pos;
+
+		initialVelocity = vel;
 		pigeonRb.velocity = vel;
 	}
 
@@ -67,14 +72,21 @@ public class PigeonUnit : MonoBehaviour
 	}
 	#endregion
 
-	private void Awake()
+	public void SetStats()
 	{
 		pigeonRb = GetComponent<Rigidbody2D>();
+		speedStats = Upgradeton.instance.GetSpeedStats();
+
+		pigeonRb.mass = speedStats.followerStats.mass;
+		pigeonRb.drag = speedStats.followerStats.linearDrag;
+		pigeonRb.angularDrag = speedStats.followerStats.angularDrag;
+
+		followForce = speedStats.followerStats.maxFollowForce;
+		maxFollowVelocity = speedStats.followerStats.maxFollowSpeed;
 	}
 
 	private void Update()
 	{
-
         //suicide button
         if (Input.GetKeyDown(KeyCode.Return))
         {
@@ -85,10 +97,9 @@ public class PigeonUnit : MonoBehaviour
 
         if (!isMasterPigeon)
 		{
-            
-
             if (!isFollowingMaster)
 			{
+				pigeonRb.velocity = initialVelocity;
 				if (Vector2.Distance(transform.position, MasterPigeon.transform.position) <= initialAttractionDistance)
 				{
 					isFollowingMaster = true;

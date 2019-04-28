@@ -11,8 +11,8 @@ public class MasterPigeonMovement : MonoBehaviour
 	public float minimumGTForSwing = 50f;
 	public float gravityForceGrowthPerSecond = 10f;
 	public float gravityTorqueGrowthPerSecond = 310f;
-	public float thrustForce = 120f;
-	public float thrustTorque = 15f;
+	private float thrustForce = 120f;
+	private float thrustTorque = 15f;
 
 	[Header("Limits")]
 	public float maxAngularVelocity = 50f;
@@ -24,6 +24,7 @@ public class MasterPigeonMovement : MonoBehaviour
 
     private Animator m_Animator;
 	private GravityTorqueMode previousTorqueMode;
+	private SpeedUpgrade speedStats;
 
 
     private void Start()
@@ -35,13 +36,25 @@ public class MasterPigeonMovement : MonoBehaviour
 	{
 		pigeonRb = GetComponent<Rigidbody2D>();
         m_Animator = gameObject.GetComponentInChildren<Animator>();
-		
+
+		SetSpeedStats();
 
         if (pigeonRb.velocity == Vector2.zero)
 		{
 			pigeonRb.velocity = new Vector3(startingVelocity, 0f, 0f);
 			PigeonUnit.SetAsMasterPigeon(gameObject);
 		}
+	}
+
+	private void SetSpeedStats()
+	{
+		pigeonRb.mass = speedStats.masterStats.mass;
+		pigeonRb.drag = speedStats.masterStats.linearDrag;
+		pigeonRb.angularDrag = speedStats.masterStats.angularDrag;
+
+		maxVelocity = speedStats.masterStats.maxSpeed;
+		thrustForce = speedStats.masterStats.thrustForce;
+		thrustTorque = speedStats.masterStats.thrustTorque;
 	}
 
     private void Update()
