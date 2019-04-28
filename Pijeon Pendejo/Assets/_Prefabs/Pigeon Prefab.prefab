@@ -48,6 +48,7 @@ MonoBehaviour:
   - {fileID: 5427652328423454463, guid: 74cc907bfeac3754cacc3c48fa372793, type: 3}
   - {fileID: 5427652328423454463, guid: e8ed2085647283e46acb5fa26fcc2529, type: 3}
   PigeonAnimator: {fileID: 6908887450819375143}
+  MaxShitDelay: 1.5
 --- !u!1 &2652627820023021765
 GameObject:
   m_ObjectHideFlags: 0
@@ -172,11 +173,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2652627820023021760}
     m_Modifications:
-    - target: {fileID: 3046953901115844910, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
-        type: 3}
-      propertyPath: m_Name
-      value: Pigeon
-      objectReference: {fileID: 0}
     - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -246,6 +242,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.45936
+      objectReference: {fileID: 0}
+    - target: {fileID: 3046953901115844910, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_Name
+      value: Pigeon
       objectReference: {fileID: 0}
     - target: {fileID: 3046953900076193699, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
         type: 3}
