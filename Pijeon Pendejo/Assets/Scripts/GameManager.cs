@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,12 @@ public class GameManager : MonoBehaviour
 
     public static bool GameStarted; //Turns false after first space press
     public static bool GameEnded;
+
+    private void Start()
+    {
+        GameStarted = false;
+        GameEnded = false;
+    }
 
     void Update()
     {
@@ -30,7 +37,7 @@ public class GameManager : MonoBehaviour
         }
         else if(GameEnded && Input.GetButtonDown("Pigeon Thrust"))
         {
-            pigeonManager.RestartTheGame(PigeonAtStart.transform);
+            SceneManager.LoadScene(0);
         }
     }
 }

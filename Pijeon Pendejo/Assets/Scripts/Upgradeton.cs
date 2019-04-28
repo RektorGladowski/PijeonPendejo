@@ -23,6 +23,7 @@ public class Upgradeton : MonoBehaviour
     {
 		instance = this;
 		SetStartingLevels();
+        DontDestroyOnLoad(this.gameObject);
     }
 
 	private void SetStartingLevels()

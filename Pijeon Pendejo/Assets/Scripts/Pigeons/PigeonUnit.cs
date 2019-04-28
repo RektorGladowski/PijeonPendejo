@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PigeonUnit : MonoBehaviour
 {
@@ -313,8 +314,8 @@ public class PigeonUnit : MonoBehaviour
 			}
 			else
 			{
-				Debug.LogError("Player should lose now, fucking put something here");
-		
+                //Debug.LogError("Player should lose now, fucking put something here");
+                GameManager.GameEnded = true;
 				// TODO Stop the game and show game over screen
 			}
 		}

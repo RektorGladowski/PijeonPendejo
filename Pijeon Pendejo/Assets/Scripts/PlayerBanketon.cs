@@ -13,7 +13,8 @@ public class PlayerBanketon : MonoBehaviour
 	{
 		instance = this;
 		playerPigeons = initialPlayerPigeons;
-	}
+        DontDestroyOnLoad(this.gameObject);
+    }
 
 	public bool CanPayWithPigeons(int cost)
 	{
