@@ -48,6 +48,8 @@ public class MasterPigeonMovement : MonoBehaviour
 
 	private void SetSpeedStats()
 	{
+		speedStats = Upgradeton.instance.GetSpeedStats();
+
 		pigeonRb.mass = speedStats.masterStats.mass;
 		pigeonRb.drag = speedStats.masterStats.linearDrag;
 		pigeonRb.angularDrag = speedStats.masterStats.angularDrag;
