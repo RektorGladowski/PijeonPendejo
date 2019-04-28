@@ -36,13 +36,15 @@ public class PigeonManager : MonoBehaviour
 	private void Start()
     {
 		cinemachineCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CinemachineVirtualCamera>();
-		//RestartTheGame();
+
+		//To do remove this
+		RestartTheGame(transform);
     }
 
-	public void RestartTheGame()
+	public void RestartTheGame(Transform startingTransform)
 	{
 		ResetPigeonData();
-		SpawnInitialPigeons();
+		SpawnInitialPigeons(startingTransform);
 	}
 
 	private void ResetPigeonData()
@@ -58,10 +60,11 @@ public class PigeonManager : MonoBehaviour
 		teamStats = Upgradeton.instance.GetTeamStats();
 	}
 
-	private void SpawnInitialPigeons()
+	private void SpawnInitialPigeons(Transform point)
 	{
 		// Spawn master pigeon
-		GameObject masterPigeon = Instantiate(pigeonUnitPrefab, transform.position, Quaternion.identity) as GameObject;
+		GameObject masterPigeon = Instantiate(pigeonUnitPrefab, point.position, Quaternion.identity) as GameObject;
+		masterPigeon.tag = "MainPigeon";
 		PigeonUnit pUnit = masterPigeon.GetComponent<PigeonUnit>();
 
 		pUnit.SetStats();
@@ -73,7 +76,8 @@ public class PigeonManager : MonoBehaviour
 		// Spawn team pigeons
 		for (int i = 1; i <= teamStats.numberOfStarterFollowers; i++)
 		{
-			GameObject pigeon = Instantiate(pigeonUnitPrefab, transform.position + GetRandomV2Offset(initialTeamRadius), Quaternion.identity) as GameObject;
+			GameObject pigeon = Instantiate(pigeonUnitPrefab, point.position + GetRandomV2Offset(initialTeamRadius), Quaternion.identity) as GameObject;
+			pigeon.tag = "Pigeon";
 			PigeonUnit p = pigeon.GetComponent<PigeonUnit>();
 
 			Vector3 localScale = pigeon.transform.localScale;
@@ -82,7 +86,7 @@ public class PigeonManager : MonoBehaviour
 
 			p.SetStats();
 			p.SetPigeonManagerRef(this);
-			p.SetInitialPositionAndSpeed(transform.position, new Vector3(initialFollowerSpeed, 0f, 0f));
+			p.SetInitialSpeed(new Vector3(initialFollowerSpeed, 0f, 0f));
 			p.SetCharacterTrait(PigeonUnitCharacter.GroupTraveler);
 
 			pigeonUnits.Add(p);
@@ -123,7 +127,7 @@ public class PigeonManager : MonoBehaviour
 
 		p.SetStats();
 		p.SetPigeonManagerRef(this);
-		p.SetInitialPositionAndSpeed(transform.position, new Vector3((leftSidePigeon ? initialNonFollowerLeftSideSpeed : initialNonFollowerRightSideSpeed), 0f, 0f));
+		p.SetInitialSpeed(new Vector3((leftSidePigeon ? initialNonFollowerLeftSideSpeed : initialNonFollowerRightSideSpeed), 0f, 0f));
 		p.SetCharacterTrait(PigeonUnitCharacter.GroupTraveler);
 
 		pigeonUnits.Add(p);

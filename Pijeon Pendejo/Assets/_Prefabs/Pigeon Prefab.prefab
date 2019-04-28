@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 1760963997}
   m_Layer: 8
   m_Name: Pigeon Prefab
-  m_TagString: MainPigeon
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,9 +136,9 @@ MonoBehaviour:
   bloodyExplosion: {fileID: 1651407365505755140, guid: 55f1ec52675ad4b40bbe520485059524,
     type: 3}
   pigeonPosition: {fileID: 6908887450819375142}
-  initialAttractionDistance: 9.89
+  initialAttractionDistance: 4
   neighbourhoodDistance: 1.5
-  rotationSpeed: 90
+  rotationSpeed: 2
   behaviourChangeChance: 5
   alignmentWeight: 0.2
   separationWeight: 4
