@@ -29,7 +29,6 @@ public class MasterPigeonMovement : MonoBehaviour
 
     private void Start()
     {
-		Debug.LogError("HALOKURWA");
 		InitializeMasterPigeon();
     }
 

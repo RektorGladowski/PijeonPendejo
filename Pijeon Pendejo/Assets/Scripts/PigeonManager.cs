@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
@@ -7,15 +6,13 @@ public class PigeonManager : MonoBehaviour
 {
 	[HideInInspector]
 	public List<PigeonUnit> pigeonUnits = new List<PigeonUnit>();
-	
 	public int AvailablePigeonFollowers { get; set; }
-	
 
 	public GameObject pigeonUnitPrefab;
+	public float initialTeamRadius = 4f;
 
 	public float spawnTimer = 0.5f;
 	public float initialSpeed = 10f;
-
 	private float timer = 0f;
 
 	private CinemachineVirtualCamera cinemachineCamera;
@@ -31,8 +28,8 @@ public class PigeonManager : MonoBehaviour
 	public void RestartTheGame()
 	{
 		ResetPigeonData();
-
 		SpawnInitialPigeons();
+
 	}
 
 	private void ResetPigeonData()
@@ -59,6 +56,20 @@ public class PigeonManager : MonoBehaviour
 		pigeonUnits.Add(pUnit);
 
 		PigeonUnit.SetAsMasterPigeon(masterPigeon);
+
+		// Spawn team pigeons
+		for (int i = 1; i <= teamStats.numberOfStarterFollowers; i++)
+		{
+			GameObject pigeon = Instantiate(pigeonUnitPrefab, transform.position + GetRandomV2Offset(initialTeamRadius), Quaternion.identity) as GameObject;
+			PigeonUnit p = pigeon.GetComponent<PigeonUnit>();
+
+			p.SetStats();
+			p.SetPigeonManagerRef(this);
+			p.SetInitialPositionAndSpeed(transform.position, new Vector3(initialSpeed, 0f, 0f));
+			p.SetCharacterTrait((PigeonUnitCharacter)Random.Range(0, 4));
+
+			pigeonUnits.Add(p);
+		}		
 	}
 
 	private void Update()
@@ -93,5 +104,15 @@ public class PigeonManager : MonoBehaviour
 	public void MasterPigeonWasChosen()
 	{
 		cinemachineCamera.Follow = PigeonUnit.GetMasterPigeonTransform;
+	}
+
+	private Vector3 GetRandomV2Offset(float radius)
+	{
+		Vector3 offset = Vector3.zero;
+
+		offset.x = Random.Range(-radius, radius);
+		offset.y = Random.Range(-radius, radius);
+
+		return offset;
 	}
 }
