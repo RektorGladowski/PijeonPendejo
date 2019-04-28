@@ -120,6 +120,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &77625113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8482384847672989612, guid: edb303a590087cf4f92ae4ae57b7a3a1,
+    type: 3}
+  m_PrefabInstance: {fileID: 983591953}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &273332370
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,10 +404,27 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8482384847672989612, guid: edb303a590087cf4f92ae4ae57b7a3a1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 486748398, guid: edb303a590087cf4f92ae4ae57b7a3a1, type: 3}
       propertyPath: PigeonAtStart
       value: 
       objectReference: {fileID: 2090130314}
+    - target: {fileID: 486748398, guid: edb303a590087cf4f92ae4ae57b7a3a1, type: 3}
+      propertyPath: PigeonManager
+      value: 
+      objectReference: {fileID: 2107378952}
+    - target: {fileID: 486748398, guid: edb303a590087cf4f92ae4ae57b7a3a1, type: 3}
+      propertyPath: EnemySpawner
+      value: 
+      objectReference: {fileID: 77625113}
+    - target: {fileID: 486748398, guid: edb303a590087cf4f92ae4ae57b7a3a1, type: 3}
+      propertyPath: CinemachineCamera
+      value: 
+      objectReference: {fileID: 1268391544}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edb303a590087cf4f92ae4ae57b7a3a1, type: 3}
 --- !u!114 &1051033813 stripped
@@ -414,6 +437,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cedfde7204d63fa49b98ec633f8c6c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1268391544 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7279010608431031518, guid: d843aeafec10eb443b714e6ab0dfe42f,
+    type: 3}
+  m_PrefabInstance: {fileID: 7279010608437474669}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1658363002
@@ -676,11 +711,17 @@ MonoBehaviour:
   pigeonUnits: []
   pigeonUnitPrefab: {fileID: 2652627820023021765, guid: 766377ddea9d2944092027a8879fbf21,
     type: 3}
+  initialFollowerSpeed: 10
   initialTeamRadius: 4
   minPigeonSize: 0.7
   maxPigeonSize: 1.5
-  spawnTimer: 0.5
-  initialSpeed: 10
+  minSpawnHeight: -2
+  maxSpawnHeight: 9
+  verticalOffset: -10
+  initialNonFollowerLeftSideSpeed: 20
+  initialNonFollowerRightSideSpeed: 3
+  minSpawnTime: 1
+  maxSpawnTime: 5
 --- !u!4 &2107378953
 Transform:
   m_ObjectHideFlags: 0

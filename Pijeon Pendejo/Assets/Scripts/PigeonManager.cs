@@ -36,7 +36,7 @@ public class PigeonManager : MonoBehaviour
 	private void Start()
     {
 		cinemachineCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CinemachineVirtualCamera>();
-		RestartTheGame();
+		//RestartTheGame();
     }
 
 	public void RestartTheGame()
