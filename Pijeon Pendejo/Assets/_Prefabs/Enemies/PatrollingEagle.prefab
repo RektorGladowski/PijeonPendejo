@@ -225,10 +225,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 61105325, guid: b422ca5a63ab2a4478ae225ec46671a2, type: 3}
-      propertyPath: m_Constraints
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 61105324, guid: b422ca5a63ab2a4478ae225ec46671a2, type: 3}
       propertyPath: PatrollingPoints.Array.data[0]
       value: 
