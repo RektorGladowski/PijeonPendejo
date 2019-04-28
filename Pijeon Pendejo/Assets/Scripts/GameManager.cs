@@ -8,10 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject PigeonAtStart;
     public GameObject BloodyExplosion;
     public GameObject EnemySpawner;
-    public CinemachineVirtualCamera CinemachineCamera;
-    public PigeonManager PigeonManager;
-
-    public float CameraOrthoSize = 7;
+    public PigeonManager pigeonManager;
 
     public static bool GameStarted; //Turns false after first space press
 
@@ -27,9 +24,9 @@ public class GameManager : MonoBehaviour
             }
             Destroy(PigeonAtStart);
 
-            CinemachineCamera.m_Lens.OrthographicSize = Mathf.Lerp(CinemachineCamera.m_Lens.OrthographicSize, CameraOrthoSize, 2f);
+            pigeonManager.gameObject.SetActive(true);
             EnemySpawner.SetActive(true);
-            PigeonManager.RestartTheGame();
+            pigeonManager.RestartTheGame(PigeonAtStart.transform);
         }
     }
 
