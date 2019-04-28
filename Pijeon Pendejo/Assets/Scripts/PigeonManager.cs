@@ -10,6 +10,7 @@ public class PigeonManager : MonoBehaviour
 
 	[Header("Starting info")]
 	public GameObject pigeonUnitPrefab;
+	public float initialFollowerSpeed = 10f;
 	public float initialTeamRadius = 4f;
 
 	[Header("Pigeon size randomization")]
@@ -17,11 +18,18 @@ public class PigeonManager : MonoBehaviour
 	public float maxPigeonSize = 1.5f;
 
 	[Header("Non followers spawner settings")]
-	public float spawnTimer = 0.5f;
-	public float initialSpeed = 10f;
+	public float minSpawnHeight = -2f;
+	public float maxSpawnHeight = 9f;
+	public float verticalOffset = -10f;
 
+	public float initialNonFollowerLeftSideSpeed = 20f;
+	public float initialNonFollowerRightSideSpeed = 3f;
+	public float minSpawnTime = 1f;
+	public float maxSpawnTime = 5f;
+	
 	private CinemachineVirtualCamera cinemachineCamera;
 	private TeamUpgrade teamStats;
+	private float currentSpawnTime = 3f;
 	private float timer = 0f;
 
 
@@ -35,7 +43,6 @@ public class PigeonManager : MonoBehaviour
 	{
 		ResetPigeonData();
 		SpawnInitialPigeons();
-
 	}
 
 	private void ResetPigeonData()
@@ -75,8 +82,8 @@ public class PigeonManager : MonoBehaviour
 
 			p.SetStats();
 			p.SetPigeonManagerRef(this);
-			p.SetInitialPositionAndSpeed(transform.position, new Vector3(initialSpeed, 0f, 0f));
-			p.SetCharacterTrait(PigeonUnitCharacter.GroupTraveler);//(PigeonUnitCharacter)Random.Range(0, 3));
+			p.SetInitialPositionAndSpeed(transform.position, new Vector3(initialFollowerSpeed, 0f, 0f));
+			p.SetCharacterTrait(PigeonUnitCharacter.GroupTraveler);
 
 			pigeonUnits.Add(p);
 		}		
@@ -84,23 +91,42 @@ public class PigeonManager : MonoBehaviour
 
 	private void Update()
 	{
-		/*
 		timer += Time.deltaTime;
 
-		if (timer > spawnTimer)
+		if (timer >= currentSpawnTime)
 		{
-			timer = 0f;
-			GameObject pigeon = Instantiate(pigeonUnitPrefab, transform.position, Quaternion.identity) as GameObject;
-			PigeonUnit pUnit = pigeon.GetComponent<PigeonUnit>();
-
-			pUnit.SetStats();
-			pUnit.SetPigeonManagerRef(this);
-			pUnit.SetInitialPositionAndSpeed(transform.position, new Vector3(initialSpeed, 0f, 0f));
-			pUnit.SetCharacterTrait((PigeonUnitCharacter)Random.Range(0, 4));
-
-			pigeonUnits.Add(pUnit);
+			ResetTimerAndGetRandomSpawnTime();
+			SpawnRandomPigeon();
 		}
-		*/
+	}
+
+	private void ResetTimerAndGetRandomSpawnTime()
+	{
+		timer = 0f;
+		currentSpawnTime = Random.Range(minSpawnTime, maxSpawnTime);
+	}
+
+	private void SpawnRandomPigeon()
+	{
+		bool leftSidePigeon = Random.Range(0, 2) == 1;
+
+		Vector3 randomSpawnPosition = Vector3.zero;
+		randomSpawnPosition.x = PigeonUnit.GetMasterPigeonPosition.x + (leftSidePigeon ? verticalOffset : (-2 * verticalOffset));
+		randomSpawnPosition.y = Random.Range(minSpawnHeight, maxSpawnHeight);
+
+		GameObject pigeon = Instantiate(pigeonUnitPrefab, randomSpawnPosition, Quaternion.identity) as GameObject;
+		PigeonUnit p = pigeon.GetComponent<PigeonUnit>();
+
+		Vector3 localScale = pigeon.transform.localScale;
+		localScale *= Random.Range(minPigeonSize, maxPigeonSize);
+		pigeon.transform.localScale = localScale;
+
+		p.SetStats();
+		p.SetPigeonManagerRef(this);
+		p.SetInitialPositionAndSpeed(transform.position, new Vector3((leftSidePigeon ? initialNonFollowerLeftSideSpeed : initialNonFollowerRightSideSpeed), 0f, 0f));
+		p.SetCharacterTrait(PigeonUnitCharacter.GroupTraveler);
+
+		pigeonUnits.Add(p);
 	}
 
 	public void RemovePigeonUnit(PigeonUnit unit)

@@ -137,9 +137,12 @@ MonoBehaviour:
     type: 3}
   pigeonPosition: {fileID: 6908887450819375142}
   initialAttractionDistance: 15
-  neighbourhoodDistance: 4.2
+  neighbourhoodDistance: 5
   rotationSpeed: 90
-  behaviourChangeChance: 5
+  behaviourChangeChance: 10
+  alignmentWeight: 1
+  separationWeight: 3
+  cohesionWeight: 1
   isFollowingMaster: 0
 --- !u!95 &1760963997
 Animator:
@@ -167,6 +170,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2652627820023021760}
     m_Modifications:
+    - target: {fileID: 3046953901115844910, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
+        type: 3}
+      propertyPath: m_Name
+      value: Pigeon
+      objectReference: {fileID: 0}
     - target: {fileID: 3046953901115844908, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -236,11 +244,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.45936
-      objectReference: {fileID: 0}
-    - target: {fileID: 3046953901115844910, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
-        type: 3}
-      propertyPath: m_Name
-      value: Pigeon
       objectReference: {fileID: 0}
     - target: {fileID: 3046953900076193699, guid: 62ba4c3499b775e49b0a3c29bd40ad09,
         type: 3}
