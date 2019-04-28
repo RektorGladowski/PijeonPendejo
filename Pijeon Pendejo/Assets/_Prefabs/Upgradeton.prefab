@@ -54,11 +54,12 @@ MonoBehaviour:
       linearDrag: 0.2
       angularDrag: 0
     followerStats:
-      mass: 2
-      maxFollowSpeed: 12
-      maxFollowForce: 120
-      linearDrag: 15
-      angularDrag: 0.2
+      mass: 2.5
+      maxFollowSpeed: 11
+      maxFollowForce: 150
+      minLinearDrag: 3
+      maxLinearDrag: 6
+      angularDrag: 3
   ShitUpgrades:
   - upgradeTier: 1
     upgradeCost: 2
@@ -88,7 +89,7 @@ MonoBehaviour:
   TeamUpgrades:
   - upgradeTier: 1
     upgradeCost: 5
-    numberOfStarterFollowers: 1
+    numberOfStarterFollowers: 20
   - upgradeTier: 2
     upgradeCost: 9
     numberOfStarterFollowers: 2
