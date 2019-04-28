@@ -10,7 +10,7 @@ public class MasterPigeonMovement : MonoBehaviour
 	[Header("Movement Parameters")]
 	public float minimumGTForSwing = 50f;
 	public float gravityForceGrowthPerSecond = 10f;
-	public float gravityTorqueGrowthPerSecond = 310f;
+	public float gravityTorqueGrowthPerSecond = 10f;
 	private float thrustForce = 120f;
 	private float thrustTorque = 15f;
 
