@@ -519,6 +519,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7208647843650035554}
+  - component: {fileID: 4474525766068289358}
   m_Layer: 0
   m_Name: waves
   m_TagString: Untagged
@@ -545,6 +546,23 @@ Transform:
   m_Father: {fileID: 7208647842636247883}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4474525766068289358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7208647843650035555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee77db27857d1c64cbfaa7d5ad0c1201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wave1: {fileID: 9120986942062826174}
+  wave2: {fileID: 1363688192018901950}
+  wave3: {fileID: 4778236996037663246}
+  wave4: {fileID: 4262141825361997862}
+  skalaBeauforta: 1
 --- !u!1 &7415708134469496082
 GameObject:
   m_ObjectHideFlags: 0
