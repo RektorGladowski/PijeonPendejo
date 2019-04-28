@@ -88,7 +88,7 @@ public class EnemySpawner : MonoBehaviour
         else 
         {
             spawnedObject = Instantiate(Buildings[Random.Range(0, Buildings.Count - 1)]);
-            spawnedObject.transform.Translate(new Vector3(lastSpawn + Distance, 0, 0));
+            spawnedObject.transform.Translate(new Vector3(lastSpawn + Distance, 0, -4));
         }
 
         lastSpawn += Distance;
